@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BeThere — Fill Your Bar on Slow Nights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #000000;
+      --surface: #111111;
+      --border: #1F1F1F;
+      --text: #ECEDEE;
+      --muted: #6B7280;
+      --blue: #3B82F6;
+      --blue-dark: #2563EB;
+      --green: #22C55E;
+      --amber: #D97706;
+      --gold: #EAB308;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Syne', sans-serif;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 32px; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 18px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .logo-icon {
+      width: 28px; height: 28px;
+      background: var(--blue);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo span.be { color: var(--blue); }
+    .logo span.there { color: var(--text); }
+    .nav-links {
+      display: flex; gap: 28px; align-items: center;
+    }
+    .nav-links a {
+      font-size: 13px; color: var(--muted);
+      font-family: 'Outfit', sans-serif; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      display: flex; gap: 12px; align-items: center;
+    }
+    .btn-ghost {
+      font-size: 13px; color: var(--muted); cursor: pointer;
+      font-family: 'Outfit', sans-serif; font-weight: 500;
+    }
+    .btn-blue {
+      font-size: 13px; font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(90deg, var(--blue) 0%, var(--blue-dark) 100%);
+      color: white;
+      padding: 8px 18px; border-radius: 999px;
+      display: inline-block; cursor: pointer;
+      box-shadow: 0 0 20px rgba(59,130,246,0.3);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #000000 0%, #0A1628 50%, #111111 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 100px 32px 60px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 38%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(59,130,246,0.18) 0%, rgba(59,130,246,0.06) 40%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Floating notification cards */
+    .float {
+      position: absolute;
+      pointer-events: none; user-select: none;
+    }
+    .notif-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      display: flex; align-items: center; gap: 10px;
+      min-width: 220px;
+    }
+    .notif-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .notif-text { font-size: 12px; line-height: 1.4; }
+    .notif-text strong { color: var(--text); font-weight: 600; font-size: 12px; }
+    .notif-text span { color: var(--muted); }
+
+    .deal-pill {
+      background: rgba(217,119,6,0.15);
+      border: 1px solid rgba(217,119,6,0.3);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px; font-weight: 600;
+      color: var(--amber);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .rsvp-badge {
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px; font-weight: 600;
+      color: var(--green);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .count-badge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-size: 13px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .count-badge .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--blue);
+    }
+
+    /* Hero content */
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; max-width: 640px;
+    }
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px; font-weight: 500;
+      color: var(--blue);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 56px; font-weight: 700;
+      line-height: 1.1; letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .hero h1 .accent { color: var(--blue); }
+    .hero-sub {
+      font-size: 18px; color: var(--muted);
+      line-height: 1.6; margin-bottom: 36px;
+      font-weight: 400;
+    }
+    .hero-ctas {
+      display: flex; gap: 12px; justify-content: center; align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px; font-weight: 600;
+      background: linear-gradient(90deg, var(--blue) 0%, var(--blue-dark) 100%);
+      color: white;
+      padding: 14px 28px; border-radius: 999px;
+      box-shadow: 0 0 32px rgba(59,130,246,0.35);
+      display: inline-block;
+    }
+    .btn-outline {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px; font-weight: 500;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 13px 26px; border-radius: 999px;
+      display: inline-block;
+    }
+    .scarcity-note {
+      margin-top: 16px;
+      font-size: 12px; color: var(--muted);
+    }
+    .scarcity-note strong { color: var(--gold); }
+
+    /* Phone mockup strip */
+    .phone-strip {
+      position: relative; z-index: 2;
+      margin-top: 64px;
+      display: flex; gap: 20px; justify-content: center; align-items: flex-end;
+      flex-wrap: wrap;
+    }
+    .phone {
+      width: 200px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(59,130,246,0.08);
+      position: relative;
+    }
+    .phone.center { transform: translateY(-24px); width: 220px; }
+    .phone-notch {
+      width: 60px; height: 6px;
+      background: #000; border-radius: 999px;
+      margin: 10px auto 0;
+    }
+    .phone-screen { padding: 12px; }
+    .phone-header {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px; font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    /* App UI elements in phone */
+    .event-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+    .event-item-title {
+      font-size: 11px; font-weight: 600;
+      margin-bottom: 3px; color: var(--text);
+    }
+    .event-item-meta {
+      font-size: 9px; color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .event-item-footer {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .friend-avatars {
+      display: flex;
+    }
+    .friend-avatar {
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 1.5px solid var(--surface);
+      margin-left: -4px;
+      font-size: 7px; display: flex; align-items: center;
+      justify-content: center; font-weight: 700;
+    }
+    .friend-avatar:first-child { margin-left: 0; }
+    .going-text {
+      font-size: 9px; color: var(--green); font-weight: 500;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    section { padding: 80px 32px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .section-h2 {
+      font-size: 40px; font-weight: 700;
+      line-height: 1.2; letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--muted);
+      line-height: 1.7; max-width: 520px;
+    }
+
+    /* ─── INSIGHT SECTION ─── */
+    .insight { background: var(--surface); }
+    .insight-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 60px;
+    }
+    .insight-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+    }
+    .insight-card.bad { border-color: rgba(239,68,68,0.2); }
+    .insight-card.good { border-color: rgba(59,130,246,0.25); }
+    .insight-card-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 16px;
+      padding: 4px 10px; border-radius: 999px; display: inline-block;
+    }
+    .label-bad { background: rgba(239,68,68,0.1); color: #EF4444; }
+    .label-good { background: rgba(59,130,246,0.1); color: var(--blue); }
+    .insight-card h3 {
+      font-size: 22px; font-weight: 700;
+      line-height: 1.3; margin-bottom: 12px;
+    }
+    .insight-card p {
+      font-size: 14px; color: var(--muted); line-height: 1.7;
+    }
+    .insta-post {
+      margin-top: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .insta-bar-name {
+      font-size: 11px; font-weight: 600;
+      margin-bottom: 8px; color: var(--text);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .insta-likes {
+      font-size: 10px; color: var(--muted); margin-top: 6px;
+    }
+    .insta-img {
+      width: 100%; height: 80px;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+    }
+    .bethere-feed {
+      margin-top: 20px;
+      background: rgba(59,130,246,0.04);
+      border: 1px solid rgba(59,130,246,0.15);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .feed-event {
+      margin-bottom: 12px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .feed-event:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .feed-event-name {
+      font-size: 12px; font-weight: 600; margin-bottom: 4px;
+    }
+    .feed-social-proof {
+      font-size: 11px; color: var(--green);
+      display: flex; align-items: center; gap: 4px;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how { background: var(--bg); }
+    .steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 60px;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute; top: 40px; left: calc(33% - 20px); right: calc(33% - 20px);
+      height: 1px; background: var(--border);
+    }
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      position: relative;
+    }
+    .step-num {
+      width: 36px; height: 36px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-dark));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 15px; font-weight: 700; color: white;
+      margin-bottom: 16px;
+    }
+    .step h3 {
+      font-size: 18px; font-weight: 700;
+      margin-bottom: 8px; letter-spacing: -0.3px;
+    }
+    .step p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .step-detail {
+      margin-top: 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    /* cascade visual */
+    .cascade-row {
+      display: flex; align-items: center; gap: 6px;
+      margin-bottom: 6px; font-size: 11px; color: var(--muted);
+    }
+    .cascade-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* ─── ROI SECTION ─── */
+    .roi { background: var(--surface); }
+    .roi-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; align-items: center; margin-top: 60px;
+    }
+    .roi-math {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+    }
+    .roi-equation {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px; color: var(--muted);
+      margin-bottom: 8px; letter-spacing: 0.5px;
+    }
+    .roi-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 64px; font-weight: 700;
+      color: var(--blue); letter-spacing: -3px;
+      line-height: 1;
+      text-shadow: 0 0 40px rgba(59,130,246,0.4);
+    }
+    .roi-label {
+      font-size: 14px; color: var(--muted); margin-top: 8px;
+    }
+    .roi-divider {
+      width: 40px; height: 2px;
+      background: var(--border); margin: 24px auto;
+    }
+    .roi-cost {
+      font-size: 13px; color: var(--muted);
+    }
+    .roi-cost strong { color: var(--text); }
+    .roi-points { list-style: none; }
+    .roi-points li {
+      display: flex; gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px; color: var(--muted); line-height: 1.5;
+    }
+    .roi-points li:last-child { border-bottom: none; }
+    .roi-points li::before {
+      content: '→';
+      color: var(--blue); font-weight: 700; flex-shrink: 0;
+    }
+    .roi-points li strong { color: var(--text); }
+
+    /* ─── FEATURES ─── */
+    .features { background: var(--bg); }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-top: 60px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: rgba(59,130,246,0.3); }
+    .feature-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(59,130,246,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+    }
+    .feature-card h3 {
+      font-size: 16px; font-weight: 700;
+      margin-bottom: 8px; letter-spacing: -0.2px;
+    }
+    .feature-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .feature-value {
+      margin-top: 12px;
+      font-size: 11px; font-weight: 600; color: var(--muted);
+      letter-spacing: 0.3px;
+    }
+
+    /* ─── PRICING ─── */
+    .pricing { background: var(--surface); }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-top: 60px;
+    }
+    .price-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      position: relative;
+    }
+    .price-card.featured {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, #0A0A00 0%, #111100 100%);
+    }
+    .price-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--gold);
+      color: #000; font-size: 11px; font-weight: 700;
+      padding: 4px 12px; border-radius: 999px;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .price-tier {
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .price-featured .price-tier { color: var(--gold); }
+    .price-amount {
+      font-family: 'Syne', sans-serif;
+      font-size: 40px; font-weight: 700;
+      letter-spacing: -1.5px; line-height: 1;
+      margin-bottom: 6px;
+    }
+    .price-amount .period {
+      font-size: 16px; font-weight: 500;
+      color: var(--muted); letter-spacing: 0;
+    }
+    .price-desc {
+      font-size: 13px; color: var(--muted);
+      margin-bottom: 24px; line-height: 1.5;
+    }
+    .price-cta {
+      display: block; text-align: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px; font-weight: 600;
+      padding: 12px; border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .price-cta.blue {
+      background: linear-gradient(90deg, var(--blue), var(--blue-dark));
+      color: white;
+      box-shadow: 0 0 20px rgba(59,130,246,0.25);
+    }
+    .price-cta.gold {
+      background: var(--gold);
+      color: #000;
+      box-shadow: 0 0 20px rgba(234,179,8,0.25);
+    }
+    .price-cta.outline {
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .price-features { list-style: none; }
+    .price-features li {
+      display: flex; gap: 8px; align-items: flex-start;
+      font-size: 13px; color: var(--muted);
+      padding: 6px 0; line-height: 1.4;
+    }
+    .price-features li .check { color: var(--green); flex-shrink: 0; }
+    .price-limit {
+      margin-top: 20px;
+      font-size: 11px; color: var(--muted);
+      text-align: center; padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── TEAM ─── */
+    .team { background: var(--bg); }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px; margin-top: 60px;
+    }
+    .team-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+    }
+    .team-avatar {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      border-radius: 16px;
+      margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 22px; font-weight: 700; color: white;
+    }
+    .team-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .team-role { font-size: 12px; color: var(--muted); }
+
+    /* ─── CTA FOOTER ─── */
+    .cta-footer {
+      background: linear-gradient(135deg, #000000 0%, #0A1628 50%, #111111 100%);
+      padding: 120px 32px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-footer::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-footer h2 {
+      font-size: 48px; font-weight: 700;
+      letter-spacing: -1px; line-height: 1.15;
+      margin-bottom: 20px;
+      position: relative; z-index: 1;
+    }
+    .cta-footer p {
+      font-size: 16px; color: var(--muted);
+      margin-bottom: 40px; position: relative; z-index: 1;
+    }
+    .cta-footer-btns {
+      display: flex; gap: 12px; justify-content: center;
+      position: relative; z-index: 1;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 32px;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-links {
+      display: flex; gap: 20px;
+    }
+    .footer-links a { font-size: 12px; color: var(--muted); }
+    .footer-copy { font-size: 12px; color: var(--muted); }
+
+    /* stat strip */
+    .stat-strip {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 32px;
+    }
+    .stat-strip-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-around; align-items: center;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px; font-weight: 700;
+      color: var(--blue);
+    }
+    .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* objection strip */
+    .objection-strip {
+      background: var(--bg);
+    }
+    .objection-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 60px;
+    }
+    .objection-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .objection-q {
+      font-size: 14px; font-weight: 600;
+      color: var(--muted); margin-bottom: 10px;
+      font-style: italic;
+    }
+    .objection-a {
+      font-size: 14px; color: var(--text); line-height: 1.6;
+    }
+
+    /* ─── APP DOWNLOAD ─── */
+    .app-download {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 32px;
+      text-align: center;
+    }
+    .app-download h2 {
+      font-size: 28px; font-weight: 700;
+      letter-spacing: -0.5px; margin-bottom: 10px;
+    }
+    .app-download p {
+      font-size: 15px; color: var(--muted);
+      margin-bottom: 28px; line-height: 1.6;
+    }
+    .app-btns {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+    .app-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 14px; font-weight: 600;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .app-btn:hover { border-color: rgba(59,130,246,0.4); }
+    .app-btn-sub { font-size: 10px; color: var(--muted); font-weight: 400; display: block; text-align: left; }
+    .app-btn-main { font-size: 14px; font-weight: 600; display: block; text-align: left; }
+
+    /* ─── STUDENT WAITLIST ─── */
+    .waitlist {
+      padding: 80px 32px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg) 0%, #0A1628 100%);
+      position: relative;
+    }
+    .waitlist::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .waitlist-inner {
+      position: relative; z-index: 1;
+      max-width: 480px; margin: 0 auto;
+    }
+    .waitlist-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 12px; font-weight: 500;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+    .waitlist h2 {
+      font-size: 32px; font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+    .waitlist p {
+      font-size: 15px; color: var(--muted);
+      line-height: 1.6; margin-bottom: 28px;
+    }
+    .waitlist-form {
+      display: flex; gap: 10px; max-width: 420px; margin: 0 auto;
+    }
+    .waitlist-form input {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .waitlist-form input::placeholder { color: var(--muted); }
+    .waitlist-form input:focus { border-color: var(--blue); }
+    .waitlist-form button {
+      background: linear-gradient(90deg, var(--blue) 0%, var(--blue-dark) 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-size: 14px; font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 0 20px rgba(59,130,246,0.2);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .waitlist-form button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 30px rgba(59,130,246,0.3);
+    }
+    .waitlist-count {
+      margin-top: 16px;
+      font-size: 13px; color: var(--muted);
+    }
+    .waitlist-count strong { color: var(--text); }
+    .waitlist-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .waitlist-success.show { display: block; }
+    .waitlist-success .check-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px;
+      background: rgba(34,197,94,0.1);
+      border-radius: 50%;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 36px; }
+      .insight-grid, .roi-grid, .steps, .features-grid,
+      .pricing-grid, .team-grid, .objection-grid { grid-template-columns: 1fr; }
+      .float { display: none; }
+      .waitlist-form { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 1C5.24 1 3 3.24 3 6c0 3.5 5 9 5 9s5-5.5 5-9c0-2.76-2.24-5-5-5z" fill="white"/>
+            <circle cx="6.5" cy="5.5" r="1.5" fill="#3B82F6"/>
+            <circle cx="9.5" cy="5.5" r="1.5" fill="#2563EB"/>
+          </svg>
+        </div>
+        <span class="be">Be</span><span class="there">There</span>
+      </a>
+      <div class="nav-links">
+        <a href="#how">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#team">About</a>
+        <a href="#waitlist">Students</a>
+      </div>
+      <div class="nav-cta">
+        <a href="mailto:hello@betheresocial.com" class="btn-ghost">Bar owners →</a>
+        <a href="#pricing" class="btn-blue">Get a demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+
+    <!-- Floating left -->
+    <div class="float" style="top:140px;left:40px;">
+      <div class="notif-card">
+        <div class="notif-dot" style="background:#22C55E;"></div>
+        <div class="notif-text">
+          <strong>15 RSVPs</strong><br/>
+          <span>Trivia Night · The Pickle Bar</span>
+        </div>
+      </div>
+    </div>
+    <div class="float" style="top:230px;left:60px;">
+      <div class="deal-pill">🍺 $3 Drinks All Night</div>
+    </div>
+    <div class="float" style="top:310px;left:30px;">
+      <div class="count-badge">
+        <div class="num">47</div>
+        <div style="font-size:10px;color:var(--muted);">people viewing now</div>
+      </div>
+    </div>
+
+    <!-- Floating right -->
+    <div class="float" style="top:140px;right:40px;">
+      <div class="notif-card">
+        <div class="notif-dot" style="background:#3B82F6;"></div>
+        <div class="notif-text">
+          <strong>Sarah + 3 friends</strong><br/>
+          <span>just RSVP'd to your event</span>
+        </div>
+      </div>
+    </div>
+    <div class="float" style="top:230px;right:60px;">
+      <div class="rsvp-badge">✓ 22 Going Tonight</div>
+    </div>
+    <div class="float" style="top:320px;right:40px;">
+      <div class="notif-card" style="min-width:180px;">
+        <div class="notif-dot" style="background:#EAB308;"></div>
+        <div class="notif-text">
+          <strong>Founding Partner</strong><br/>
+          <span>2 spots remaining</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center content -->
+    <div class="hero-content">
+      <div class="hero-label">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <circle cx="6" cy="6" r="5" fill="#3B82F6" opacity="0.3"/>
+          <circle cx="6" cy="6" r="2.5" fill="#3B82F6"/>
+        </svg>
+        Launching at UWEC · Eau Claire, WI
+      </div>
+
+      <h1>Fill your bar on<br/><span class="accent">slow nights.</span></h1>
+
+      <p class="hero-sub">
+        BeThere shows people where their friends<br/>
+        are actually going — turning every RSVP into<br/>
+        word-of-mouth that fills your slow nights.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#pricing" class="btn-primary">Claim your spot →</a>
+        <a href="#how" class="btn-outline">See how it works</a>
+      </div>
+
+      <p class="scarcity-note">
+        <strong>Only 10 Founding Partner spots</strong> in Eau Claire — and other venues on your street are already looking.
+      </p>
+    </div>
+
+    <!-- Phone mockup strip -->
+    <div class="phone-strip">
+
+      <!-- Phone 1: Event feed -->
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-header">Tonight 🌙</div>
+
+          <div class="event-item">
+            <div class="event-item-title">Trivia Night @ The Pickle</div>
+            <div class="event-item-meta">9:00 PM · $3 drinks</div>
+            <div class="event-item-footer">
+              <div class="friend-avatars">
+                <div class="friend-avatar" style="background:#3B82F6;">S</div>
+                <div class="friend-avatar" style="background:#22C55E;">J</div>
+                <div class="friend-avatar" style="background:#D97706;">M</div>
+              </div>
+              <span class="going-text">+12 going</span>
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-item-title">DJ Night · Wednesday</div>
+            <div class="event-item-meta">10:00 PM · Free entry</div>
+            <div class="event-item-footer">
+              <div class="friend-avatars">
+                <div class="friend-avatar" style="background:#8B5CF6;">A</div>
+                <div class="friend-avatar" style="background:#EC4899;">K</div>
+              </div>
+              <span class="going-text">+7 going</span>
+            </div>
+          </div>
+
+          <div class="event-item" style="opacity:0.6;">
+            <div class="event-item-title">Bar Bingo · Thursday</div>
+            <div class="event-item-meta">8:00 PM · $2 Taps</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone 2 (center, elevated): Event detail -->
+      <div class="phone center">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div style="font-size:9px;color:var(--muted);margin-bottom:8px;">← Back</div>
+          <div style="background:linear-gradient(135deg,#0A1628,#1a1a3e);border-radius:12px;padding:14px;margin-bottom:10px;text-align:center;">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">TONIGHT</div>
+            <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">Trivia Night</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px;">The Pickle Bar · 9PM</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+            <div style="text-align:center;flex:1;">
+              <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--blue);">22</div>
+              <div style="font-size:8px;color:var(--muted);">going</div>
+            </div>
+            <div style="text-align:center;flex:1;">
+              <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--green);">4</div>
+              <div style="font-size:8px;color:var(--muted);">friends</div>
+            </div>
+            <div style="text-align:center;flex:1;">
+              <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--amber);">47</div>
+              <div style="font-size:8px;color:var(--muted);">views</div>
+            </div>
+          </div>
+          <div style="background:linear-gradient(90deg,var(--blue),var(--blue-dark));border-radius:999px;padding:10px;text-align:center;font-size:11px;font-weight:700;color:white;">
+            Be There ✓
+          </div>
+          <div style="margin-top:10px;">
+            <div style="font-size:9px;color:var(--muted);margin-bottom:6px;">FRIENDS GOING</div>
+            <div style="display:flex;gap:6px;">
+              <div style="display:flex;align-items:center;gap:4px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.15);border-radius:8px;padding:4px 7px;">
+                <div style="width:14px;height:14px;border-radius:50%;background:#3B82F6;font-size:7px;display:flex;align-items:center;justify-content:center;font-weight:700;">S</div>
+                <span style="font-size:9px;color:var(--text);">Sarah</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:4px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.15);border-radius:8px;padding:4px 7px;">
+                <div style="width:14px;height:14px;border-radius:50%;background:#22C55E;font-size:7px;display:flex;align-items:center;justify-content:center;font-weight:700;">J</div>
+                <span style="font-size:9px;color:var(--text);">Jake</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone 3: Venue dashboard -->
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-header">Your Venue 📊</div>
+
+          <div style="background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.15);border-radius:10px;padding:10px;margin-bottom:8px;">
+            <div style="font-size:9px;color:var(--muted);margin-bottom:4px;">TRIVIA NIGHT · TONIGHT</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div>
+                <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--green);">22</div>
+                <div style="font-size:8px;color:var(--muted);">RSVPs</div>
+              </div>
+              <div>
+                <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--blue);">47</div>
+                <div style="font-size:8px;color:var(--muted);">Views</div>
+              </div>
+              <div>
+                <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--amber);">4</div>
+                <div style="font-size:8px;color:var(--muted);">Shares</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="font-size:9px;color:var(--muted);margin-bottom:4px;">PROJECTED REVENUE</div>
+          <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px;">~$440 tonight</div>
+
+          <div style="height:32px;background:rgba(59,130,246,0.06);border-radius:8px;overflow:hidden;position:relative;">
+            <div style="height:100%;width:75%;background:linear-gradient(90deg,var(--blue),var(--blue-dark));border-radius:8px;"></div>
+            <div style="position:absolute;top:50%;right:8px;transform:translateY(-50%);font-size:9px;color:white;font-weight:600;">22/30 goal</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── STAT STRIP ─── -->
+  <div class="stat-strip">
+    <div class="stat-strip-inner">
+      <div class="stat-item">
+        <div class="stat-num">23</div>
+        <div class="stat-label">Screens Built</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$400</div>
+        <div class="stat-label">One night's return</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$100</div>
+        <div class="stat-label">Per month</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10</div>
+        <div class="stat-label">Founding Partner spots</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">UWEC students building it</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── INSIGHT SECTION ─── -->
+  <section class="insight" id="insight">
+    <div class="section-inner">
+      <div class="section-label">The Problem</div>
+      <h2 class="section-h2">Instagram reaches passive<br/>scrollers. BeThere doesn't.</h2>
+      <p class="section-sub">
+        BeThere is intent-based discovery — reaching people <em>actively deciding where to go tonight.</em>
+        One is an ad. The other is a recommendation from a friend.
+      </p>
+
+      <div class="insight-grid">
+        <!-- Instagram side -->
+        <div class="insight-card bad">
+          <div class="insight-card-label label-bad">Instagram</div>
+          <h3>"Get likes. Hope for foot traffic."</h3>
+          <p>You post. Passive scrollers see it between cat videos and vacation photos. No one knows if their friends are going. They stay home.</p>
+
+          <div class="insta-post">
+            <div class="insta-bar-name">
+              <div style="width:20px;height:20px;border-radius:50%;background:#333;"></div>
+              The Pickle Bar
+            </div>
+            <div class="insta-img">🍺</div>
+            <div style="font-size:10px;color:var(--text);margin-top:8px;line-height:1.4;">Trivia night TONIGHT!! Come on in 🎉 $3 drinks all night long, starting at 9PM!</div>
+            <div class="insta-likes">❤️ 47 likes · 3 comments</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:4px;font-style:italic;">→ But how many showed up? No idea.</div>
+          </div>
+        </div>
+
+        <!-- BeThere side -->
+        <div class="insight-card good">
+          <div class="insight-card-label label-good">BeThere</div>
+          <h3>"See where your friends are going."</h3>
+          <p>Someone RSVPs. Their followers see it as a recommendation — not an ad. One RSVP cascades through their entire friend group.</p>
+
+          <div class="bethere-feed">
+            <div class="feed-event">
+              <div class="feed-event-name">Trivia Night @ The Pickle</div>
+              <div class="feed-social-proof">
+                <span>✓</span> Sarah, Jake + 12 others are going
+              </div>
+              <div style="margin-top:6px;">
+                <span class="deal-pill" style="font-size:10px;padding:3px 10px;">🍺 $3 Drinks</span>
+              </div>
+            </div>
+            <div class="feed-event">
+              <div class="feed-event-name">DJ Night · Wednesday</div>
+              <div class="feed-social-proof">
+                <span>✓</span> Mia + 7 others are going
+              </div>
+            </div>
+            <div style="text-align:center;margin-top:8px;">
+              <div style="display:inline-flex;background:linear-gradient(90deg,var(--blue),var(--blue-dark));border-radius:999px;padding:8px 18px;font-size:11px;font-weight:700;color:white;">Be There ✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW IT WORKS ─── -->
+  <section class="how" id="how">
+    <div class="section-inner">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-h2">Post → RSVP → Friends See It<br/>→ They Come</h2>
+      <p class="section-sub">
+        5 minutes to post. We handle the rest. Every RSVP automatically spreads through that person's entire friend group.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>You post an event</h3>
+          <p>Title, time, deals — takes 5 minutes. We set up your venue profile and post your first 3 events for you.</p>
+          <div class="step-detail">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:8px;">Event draft</div>
+            <div style="font-size:12px;font-weight:600;margin-bottom:3px;">Trivia Night</div>
+            <div style="font-size:10px;color:var(--muted);">Tuesday 9PM · $3 drinks all night</div>
+            <div style="margin-top:8px;background:linear-gradient(90deg,var(--blue),var(--blue-dark));border-radius:8px;padding:6px;text-align:center;font-size:10px;font-weight:700;color:white;">Publish →</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>People RSVP</h3>
+          <p>One tap — "Be There." You see live RSVPs and views on your dashboard before the night even starts.</p>
+          <div class="step-detail">
+            <div class="cascade-row">
+              <div class="cascade-dot" style="background:var(--blue);"></div>
+              <span>Sarah RSVP'd · 4:12 PM</span>
+            </div>
+            <div class="cascade-row">
+              <div class="cascade-dot" style="background:var(--green);"></div>
+              <span>Jake RSVP'd · 4:18 PM</span>
+            </div>
+            <div class="cascade-row">
+              <div class="cascade-dot" style="background:var(--amber);"></div>
+              <span>Mia RSVP'd · 5:03 PM</span>
+            </div>
+            <div style="font-size:10px;color:var(--blue);margin-top:6px;font-weight:600;">+15 more by 7PM</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">⏰ Peak planning window: 5–7 PM — that's when people decide what's happening tonight.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Friends see it. They come.</h3>
+          <p>Every RSVP shows up in that person's friends' feeds automatically — free word-of-mouth with zero effort from you.</p>
+          <div class="step-detail">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:6px;">The cascade</div>
+            <div class="cascade-row">
+              <div class="cascade-dot" style="background:var(--blue);"></div>
+              <span style="color:var(--text);">1 RSVP</span>
+            </div>
+            <div style="font-size:10px;color:var(--muted);padding:2px 0 2px 14px;">↓ 200 friends see it</div>
+            <div class="cascade-row">
+              <div class="cascade-dot" style="background:var(--green);"></div>
+              <span style="color:var(--text);">2 more RSVP</span>
+            </div>
+            <div style="font-size:10px;color:var(--muted);padding:2px 0 2px 14px;">↓ 400 more friends see it</div>
+            <div class="cascade-row">
+              <div class="cascade-dot" style="background:var(--amber);"></div>
+              <span style="color:var(--amber);font-weight:600;">Tuesday just got busy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ROI SECTION ─── -->
+  <section class="roi" id="roi">
+    <div class="section-inner">
+      <div class="section-label">The ROI</div>
+      <h2 class="section-h2">Pays for itself from one<br/>slow Tuesday.</h2>
+
+      <div class="roi-grid">
+        <div class="roi-math">
+          <div class="roi-equation">20 guests × $20 avg spend</div>
+          <div class="roi-number">$400</div>
+          <div class="roi-label">in one Tuesday night</div>
+          <div class="roi-divider"></div>
+          <div class="roi-cost">
+            BeThere costs <strong>$100/month.</strong><br/>
+            You break even with <strong>5 extra guests.</strong><br/>
+            <span style="color:var(--green);font-weight:600;font-size:14px;display:block;margin-top:8px;">Everything after that is pure profit.</span>
+          </div>
+        </div>
+
+        <ul class="roi-points">
+          <li>
+            <strong>Know before the night starts</strong> — live RSVP count tells you whether to staff up or down. No more guessing at 8 PM.
+          </li>
+          <li>
+            <strong>Your regulars become your marketing team</strong> — everyone who RSVPs automatically tells their followers. You post once, they spread it.
+          </li>
+          <li>
+            <strong>See it working within 48 hours</strong> — post an event, watch views and RSVPs come in before the night. You feel the ROI in real time.
+          </li>
+          <li>
+            <strong>No ads, no agency, no budget</strong> — people don't follow bars. They follow friends. BeThere turns every RSVP into a friend recommendation.
+          </li>
+          <li>
+            <strong>Done-for-you setup</strong> — we build your venue profile, post your first 3 events, and give you the posting template. Your time investment: 5 min per event.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FEATURES ─── -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <div class="section-label">What You Get</div>
+      <h2 class="section-h2">The BeThere Venue<br/>Partner Package</h2>
+      <p class="section-sub">Everything included. We handle setup. Total perceived value: $2,650+</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Done-for-you setup</h3>
+          <p>We build your venue profile, upload photos, write your bio, and configure everything. You just show up.</p>
+          <div class="feature-value">Perceived value: $300</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3>48-Hour Posting Guide</h3>
+          <p>Know exactly when to post each event for maximum reach. We give you the playbook — tested on your venue's crowd.</p>
+          <div class="feature-value">Perceived value: $150</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Live view counter</h3>
+          <p>See exactly how many people are viewing your event right now. Know before 8 PM what tonight looks like.</p>
+          <div class="feature-value">Perceived value: $500</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          </div>
+          <h3>Real-time RSVP alerts</h3>
+          <p>Every RSVP sends you an alert with their profile. Know who's coming — by name — before doors open.</p>
+          <div class="feature-value">Perceived value: $600</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Friend-graph amplification</h3>
+          <p>Every RSVP automatically shows up in that person's friends' feed. One RSVP cascades through entire friend groups.</p>
+          <div class="feature-value">Perceived value: $800</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>Your dedicated contact</h3>
+          <p>One team member owns your account. You have their number. They check in biweekly with your stats and what's working.</p>
+          <div class="feature-value">Perceived value: $200</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRICING ─── -->
+  <section class="pricing" id="pricing">
+    <div class="section-inner">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-h2">Three ways to partner.</h2>
+      <p class="section-sub">No setup fees. No contracts on monthly plans. Cancel anytime.</p>
+
+      <div style="margin-top:40px;margin-bottom:8px;padding:24px 28px;background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.2);border-radius:16px;font-size:15px;line-height:1.7;color:var(--muted);max-width:680px;">
+        Founding Partners pay once and never pay again. <strong style="color:var(--text);">Ten spots total</strong> — because once the platform is live in your market, the price goes up. If $5K isn't right for you, Launch Partner is <strong style="color:var(--text);">$100/month</strong> — less than one table's bar tab.
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- Launch Partner -->
+        <!-- TODO: Post-deployment — swap all mailto: CTAs in this pricing section to direct /sign-up links on the webapp (e.g. href="https://dashboard.betheresocial.com/sign-up") -->
+        <div class="price-card">
+          <div class="price-tier">Launch Partner</div>
+          <div class="price-amount">$100<span class="period">/mo</span></div>
+          <div class="price-desc">Full access. Good entry point for any venue. Cancel anytime.</div>
+          <a href="mailto:hello@betheresocial.com?subject=Launch%20Partner%20—%20Getting%20Started" class="price-cta blue">Get started</a>
+          <ul class="price-features">
+            <li><span class="check">✓</span> Done-for-you venue setup</li>
+            <li><span class="check">✓</span> First 3 events posted by us</li>
+            <li><span class="check">✓</span> Live view counter</li>
+            <li><span class="check">✓</span> Real-time RSVP alerts</li>
+            <li><span class="check">✓</span> Friend-graph amplification</li>
+            <li><span class="check">✓</span> Verified venue badge</li>
+            <li><span class="check">✓</span> Cancel anytime</li>
+          </ul>
+          <div class="price-limit">Limited to first 20 venues</div>
+        </div>
+
+        <!-- Founding Partner (featured) -->
+        <div class="price-card featured">
+          <div class="price-badge">⭐ Only 10 Spots</div>
+          <div class="price-tier" style="color:var(--gold);">Founding Partner</div>
+          <div class="price-amount" style="color:var(--gold);">$5,000<span class="period" style="color:var(--muted);"> one-time</span></div>
+          <div class="price-desc">Lifetime access. No monthly fees, ever. One payment. Done.</div>
+          <a href="mailto:hello@betheresocial.com?subject=Founding%20Partner%20—%20Claiming%20My%20Spot" class="price-cta gold">Claim a founding spot</a>
+          <ul class="price-features">
+            <li><span class="check">✓</span> Everything in Launch Partner</li>
+            <li><span style="color:var(--gold);">★</span> Lifetime access — no monthly fees ever</li>
+            <li><span style="color:var(--gold);">★</span> Founding Partner badge in the app</li>
+            <li><span style="color:var(--gold);">★</span> Category lock-in option (1 year)</li>
+            <li><span style="color:var(--gold);">★</span> All future features included</li>
+            <li><span style="color:var(--gold);">★</span> Direct input on what we build next</li>
+            <li><span style="color:var(--gold);">★</span> Priority placement in the app</li>
+          </ul>
+          <div class="price-limit" style="color:var(--gold);">10 total spots · Eau Claire only</div>
+        </div>
+
+        <!-- Early Access -->
+        <div class="price-card">
+          <div class="price-tier">Early Access Partner</div>
+          <div class="price-amount">$1,000<span class="period"> one-time</span></div>
+          <div class="price-desc">2 years free access, then $100/mo. Lock in before prices rise.</div>
+          <a href="mailto:hello@betheresocial.com?subject=Early%20Access%20Partner%20—%20Interested" class="price-cta outline">Get early access</a>
+          <ul class="price-features">
+            <li><span class="check">✓</span> Everything in Launch Partner</li>
+            <li><span class="check">✓</span> 2 years free — no monthly fees</li>
+            <li><span class="check">✓</span> Premium add-ons after conversion</li>
+            <li><span class="check">✓</span> Early Access badge</li>
+            <li><span class="check">✓</span> Locked-in $100/mo rate after 2yr</li>
+          </ul>
+          <div class="price-limit">Limited to 20 venues</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── OBJECTIONS ─── -->
+  <section class="objection-strip" id="faq">
+    <div class="section-inner">
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-h2">We've heard it all.</h2>
+
+      <div class="objection-grid">
+        <div class="objection-card">
+          <div class="objection-q">"How do I know people will actually use it?"</div>
+          <div class="objection-a">We launch B2B first — so your events are already there on day one. We're UWEC students ourselves. We're bringing our own network. And at $100/mo, you only need 5 extra guests one night to break even.</div>
+        </div>
+        <div class="objection-card">
+          <div class="objection-q">"I already post on Instagram. Why do I need this?"</div>
+          <div class="objection-a">Other apps give you visibility. BeThere gets people through the door. When someone RSVPs, their friends see it — not as an ad, but as a recommendation. Which one would make you go out on a Tuesday?</div>
+        </div>
+        <div class="objection-card">
+          <div class="objection-q">"Eau Claire is too small for this."</div>
+          <div class="objection-a">That's exactly why it works. In a tight market, everyone knows everyone. One RSVP cascades through an entire friend group. You don't need 10,000 users — you need 200 regulars who actually go out.</div>
+        </div>
+        <div class="objection-card">
+          <div class="objection-q">"What if my competitors are on it too?"</div>
+          <div class="objection-a">More venues = more events = more people opening the app = more eyes on YOUR events. A rising tide. And Founding Partners get priority placement and optional category lock-in — be the only sports bar that ranks first.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TEAM ─── -->
+  <section class="team" id="team">
+    <div class="section-inner">
+      <div class="section-label">Who We Are</div>
+      <h2 class="section-h2">Built by UWEC students<br/>who go to your bar.</h2>
+      <p class="section-sub">
+        We're not a Silicon Valley startup trying to figure out bars from a distance.
+        We go to UWEC. We go out in Eau Claire. We built BeThere because we wanted it to exist.
+      </p>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">E</div>
+          <div class="team-name">Evan</div>
+          <div class="team-role">CEO · Strategy & Sales</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">L</div>
+          <div class="team-name">Liam</div>
+          <div class="team-role">Backend + Product</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">R</div>
+          <div class="team-name">Roland</div>
+          <div class="team-role">Frontend</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">A</div>
+          <div class="team-name">Aaron</div>
+          <div class="team-role">Testing & QA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA FOOTER ─── -->
+  <section class="cta-footer">
+    <h2>Let's try it this Tuesday.</h2>
+    <p>We set up your venue profile. You post one event.<br/>Watch the RSVPs come in. If it doesn't work, no hard feelings.</p>
+    <div class="cta-footer-btns">
+      <a href="mailto:hello@betheresocial.com?subject=BeThere%20—%20Interested%20in%20Partnering" class="btn-primary" style="font-size:15px;padding:14px 32px;">Claim your spot →</a>
+      <a href="mailto:hello@betheresocial.com" class="btn-outline" style="font-size:15px;padding:14px 28px;">Email us</a>
+    </div>
+    <p style="margin-top:24px;font-size:13px;color:var(--muted);position:relative;z-index:1;">If you don't see RSVP activity in your first 30 days, we'll keep working with you at no charge until you do.</p>
+    <p style="margin-top:12px;font-size:12px;color:var(--muted);opacity:0.6;">@betheresocial · betheresocial.com</p>
+  </section>
+
+  <!-- ─── APP DOWNLOAD ─── -->
+  <div class="app-download">
+    <div class="section-inner" style="max-width:520px;">
+      <h2>Heading out tonight?</h2>
+      <p>Find where everyone's going. See who's showing up. Download free.</p>
+      <div class="app-btns">
+        <a href="#" class="app-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div>
+            <span class="app-btn-sub">Download on the</span>
+            <span class="app-btn-main">App Store</span>
+          </div>
+        </a>
+        <a href="#" class="app-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text)"><path d="M3.18 23.76c.3.17.64.24.99.2l.11-.06 11.05-6.35-2.41-2.41-9.74 8.62zM.56 1.27C.21 1.62 0 2.15 0 2.82v18.36c0 .67.21 1.2.57 1.55l.08.08 10.29-10.29v-.24L.64 1.19l-.08.08zM20.4 10.33l-2.97-1.71-2.7 2.7 2.7 2.7 2.99-1.73c.85-.49.85-1.29-.02-1.96zM4.17.24l11.05 6.35-2.41 2.41L3.07.38 3.18.3c.31-.19.67-.26 1-.06z"/></svg>
+          <div>
+            <span class="app-btn-sub">Get it on</span>
+            <span class="app-btn-main">Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── STUDENT WAITLIST ─── -->
+  <section class="waitlist" id="waitlist">
+    <div class="waitlist-inner">
+      <div class="waitlist-badge">🎓 UWEC Students</div>
+      <h2>Be first to know<br/>what's happening.</h2>
+      <p>BeThere launches in Eau Claire this April. Drop your email and we'll let you know when it's live — plus first access to every event.</p>
+      <div id="waitlist-form-container">
+        <form class="waitlist-form" id="waitlist-form" onsubmit="handleWaitlist(event)">
+          <input type="email" placeholder="your@uwec.edu" required id="waitlist-email" />
+          <button type="submit">Join waitlist</button>
+        </form>
+        <p class="waitlist-count">Join <strong id="waitlist-number">early adopters</strong> already on the list.</p>
+      </div>
+      <div class="waitlist-success" id="waitlist-success">
+        <div class="check-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">You're on the list.</h3>
+        <p style="font-size:14px;color:var(--muted);line-height:1.6;">We'll email you when BeThere goes live in Eau Claire.<br/>Tell your friends — it's better when everyone's on it.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function handleWaitlist(e) {
+      e.preventDefault();
+      var email = document.getElementById('waitlist-email').value;
+      // Store locally + show success state
+      var existing = JSON.parse(localStorage.getItem('bethere_waitlist') || '[]');
+      if (existing.indexOf(email) === -1) { existing.push(email); }
+      localStorage.setItem('bethere_waitlist', JSON.stringify(existing));
+      document.getElementById('waitlist-form-container').style.display = 'none';
+      document.getElementById('waitlist-success').classList.add('show');
+      // TODO: Replace with actual API endpoint or Google Form submission
+      // fetch('/api/waitlist', { method: 'POST', body: JSON.stringify({ email }) });
+    }
+    // Check if already signed up
+    if (localStorage.getItem('bethere_waitlist')) {
+      try {
+        var list = JSON.parse(localStorage.getItem('bethere_waitlist'));
+        if (list.length > 0) {
+          document.getElementById('waitlist-number').textContent = list.length + ' student' + (list.length > 1 ? 's' : '');
+        }
+      } catch(e) {}
+    }
+  </script>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="logo" style="font-size:15px;">
+        <div class="logo-icon" style="width:22px;height:22px;border-radius:6px;">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M6 0.5C3.79 0.5 2 2.29 2 4.5c0 2.63 4 7 4 7s4-4.38 4-7c0-2.21-1.79-4-4-4z" fill="white"/>
+          </svg>
+        </div>
+        <span class="be">Be</span><span class="there">There</span>
+      </div>
+      <div class="footer-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="mailto:hello@betheresocial.com">Contact</a>
+        <a href="https://instagram.com/betheresocial" target="_blank" rel="noopener">@betheresocial</a>
+      </div>
+      <div class="footer-copy">© 2026 BeThere. Eau Claire, WI.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
