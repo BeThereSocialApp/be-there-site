@@ -7,249 +7,198 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    :root {
+      --purple: #6B5DC0;
+      --purple-dark: #4A3D9E;
+      --purple-deeper: #2E2478;
+      --olive: #22C55E;
+      --olive-dark: #16a34a;
+    }
     html, body {
-      height: 100%;
-      overflow: hidden;
+      height: 100%; overflow: hidden;
       font-family: 'Poppins', sans-serif;
       -webkit-font-smoothing: antialiased;
+      background: #0f0e1a;
     }
 
-    /* ── SPLIT LAYOUT ───────────────────────────────── */
-    .split {
-      display: flex;
+    /* ── FULL PAGE ── */
+    .page {
       width: 100vw; height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #1a1650 0%, #0f0e1a 55%, #091f0e 100%);
     }
 
-    .split-half {
-      flex: 1 1 0;
-      min-width: 0;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 72px 64px 56px;
-      text-decoration: none;
-      overflow: hidden;
-      cursor: pointer;
+    /* Orbs */
+    .orb {
+      position: absolute; border-radius: 50%;
+      pointer-events: none; filter: blur(80px);
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      top: -150px; left: -150px;
+      background: radial-gradient(circle, rgba(107,93,192,0.35) 0%, transparent 70%);
+    }
+    .orb-2 {
+      width: 400px; height: 400px;
+      bottom: -100px; right: -100px;
+      background: radial-gradient(circle, rgba(34,197,94,0.22) 0%, transparent 70%);
     }
 
-    /* Venues side — dark purple */
-    .split-venues {
-      background: linear-gradient(160deg, #312885 0%, #1C1858 100%);
+    /* ── LOGO ── */
+    .logo-wrap {
+      position: absolute; top: 24px; left: 50%;
+      transform: translateX(-50%);
+      text-decoration: none; z-index: 10;
+    }
+    .logo-img { height: 36px; display: block; }
+    .logo-fallback {
+      display: none; font-size: 22px; font-weight: 800;
       color: #fff;
     }
-    .split-venues::before {
-      content: '';
-      position: absolute; top: -80px; right: -80px;
-      width: 380px; height: 380px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(107,93,192,0.35) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    .logo-be { color: var(--purple); }
 
-    /* Users side — light/soft */
-    .split-users {
-      background: linear-gradient(160deg, #f5f9f0 0%, #eaf5db 60%, #f4f0ff 100%);
-      color: #0F0F14;
-    }
-    .split-users::before {
-      content: '';
-      position: absolute; bottom: -80px; left: -80px;
-      width: 380px; height: 380px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(123,173,71,0.18) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    /* ── SEAM ───────────────────────────────────────── */
-    /* Radial glow behind the medallion anchors the seam */
-    .split-seam {
-      position: fixed;
-      top: 0; bottom: 0;
-      left: 50%;
-      width: 0;
-      z-index: 20;
-      pointer-events: none;
-    }
-    .split-seam::before {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      left: -1px;
-      width: 1px;
-      background: linear-gradient(to bottom,
-        transparent 0%,
-        rgba(255,255,255,0.18) 20%,
-        rgba(255,255,255,0.32) 50%,
-        rgba(255,255,255,0.18) 80%,
-        transparent 100%);
-    }
-    .split-seam::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 180px; height: 180px; border-radius: 50%;
-      background: radial-gradient(circle,
-        rgba(107,93,192,0.18) 0%,
-        rgba(107,93,192,0.06) 50%,
-        transparent 70%);
-    }
-
-    /* ── CONTENT ────────────────────────────────────── */
-    .sh-content {
+    /* ── HERO CONTENT ── */
+    .hero {
       position: relative; z-index: 2;
       display: flex; flex-direction: column;
       align-items: center; text-align: center;
-      max-width: 400px;
+      max-width: 640px; padding: 0 28px;
     }
 
-    .sh-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; margin-bottom: 22px;
-      padding: 5px 14px; border-radius: 999px;
-    }
-    .split-venues .sh-label {
-      background: rgba(255,255,255,0.10);
-      color: rgba(255,255,255,0.65);
-    }
-    .split-users .sh-label {
-      background: rgba(90,132,50,0.12);
-      color: #4d7a28;
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 20px;
     }
 
-    .sh-icon {
-      font-size: 48px; margin-bottom: 20px;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12));
+    .hero-tagline {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 800; line-height: 1.1;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .hero-tagline span { color: #22C55E; }
+
+    .hero-sub {
+      font-size: 17px; line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+      margin-bottom: 44px;
     }
 
-    .sh-headline {
-      font-size: clamp(1.65rem, 2.6vw, 2.4rem);
-      font-weight: 800; line-height: 1.15;
-      margin-bottom: 16px;
+    /* ── TWO BUTTONS ── */
+    .hero-btns {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      justify-content: center;
     }
-    .split-venues .sh-headline { color: #fff; }
-    .split-users  .sh-headline { color: #0F0F14; }
 
-    .sh-desc {
-      font-size: 14.5px; line-height: 1.7; margin-bottom: 36px;
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px; font-weight: 700;
+      padding: 16px 32px; border-radius: 999px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      letter-spacing: 0.01em; white-space: nowrap;
     }
-    .split-venues .sh-desc { color: rgba(255,255,255,0.60); }
-    .split-users  .sh-desc { color: #6B6985; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(0,0,0,0.35); }
 
-    .sh-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 14.5px; font-weight: 700; padding: 13px 28px;
-      border-radius: 999px; border: none; cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      text-decoration: none; letter-spacing: 0.01em;
-    }
-    .sh-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.20); }
-    .split-venues .sh-cta { background: #fff; color: #2E2478; }
-    .split-users  .sh-cta { background: #5B4FB5; color: #fff; }
-
-    .sh-cta-arrow { display: inline-block; transition: transform 0.18s ease; }
-    .sh-cta:hover .sh-cta-arrow { transform: translateX(4px); }
-
-    /* ── CENTER MEDALLION ───────────────────────────── */
-    .center-medallion {
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 100;
-      pointer-events: none;
-    }
-    .cm-inner {
-      width: 72px; height: 72px;
-      border-radius: 50%;
+    .btn-venue {
       background: #fff;
-      box-shadow:
-        0 0 0 1px rgba(107,93,192,0.12),
-        0 4px 24px rgba(46,36,120,0.20),
-        0 1px 6px rgba(0,0,0,0.08);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
+      color: var(--purple-deeper);
     }
-    .cm-inner img {
-      width: 44px; height: 44px; object-fit: contain; display: block;
+    .btn-venue:hover { background: #f0edff; }
+
+    .btn-user {
+      background: var(--olive);
+      color: #fff;
     }
-    .cm-inner .cm-fallback {
-      font-size: 17px; font-weight: 800; color: #2E2478; letter-spacing: -0.02em;
-      display: none;
+    .btn-user:hover { background: var(--olive-dark); }
+
+    .btn-icon { font-size: 18px; }
+    .btn-arrow { opacity: 0.6; transition: transform 0.2s, opacity 0.2s; }
+    .btn:hover .btn-arrow { transform: translateX(4px); opacity: 1; }
+
+    /* Button labels */
+    .btn-label { display: flex; flex-direction: column; text-align: left; }
+    .btn-label-top { font-size: 11px; font-weight: 600; opacity: 0.65; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; margin-bottom: 2px; }
+    .btn-label-main { font-size: 15px; font-weight: 800; line-height: 1; }
+
+    /* ── PHONE MOCKUP (bg) ── */
+    .bg-phone {
+      position: absolute; bottom: -40px; left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.06; pointer-events: none; z-index: 1;
+    }
+    .bg-phone-frame {
+      width: 220px; height: 420px;
+      border: 2px solid rgba(255,255,255,0.8);
+      border-radius: 32px;
     }
 
-    /* ── BOTTOM ACCOLADE BAR ────────────────────────── */
-    .l-accolade {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-      text-align: center; padding: 10px 24px;
+    /* ── ACCOLADE ── */
+    .accolade {
+      position: absolute; bottom: 20px;
+      left: 50%; transform: translateX(-50%);
       font-size: 11px; font-weight: 500;
-      color: rgba(255,255,255,0.42);
-      pointer-events: none;
+      color: rgba(255,255,255,0.2);
+      white-space: nowrap; z-index: 2;
     }
 
-    /* ── RESPONSIVE ─────────────────────────────────── */
-    @media (max-width: 700px) {
-      html, body { overflow: auto; }
-      .split { flex-direction: column; height: auto; }
-      .split-half { min-height: 50vh; padding: 80px 32px 60px; }
-      .split-seam { display: none; }
-      .center-medallion { display: none; }
-      .sh-headline { font-size: 1.8rem; }
+    @media (max-width: 520px) {
+      .hero-btns { flex-direction: column; width: 100%; }
+      .btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
+<div class="page">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
 
-  <!-- FULL-SCREEN SPLIT -->
-  <div class="split">
+  <!-- Ghost phone in bg -->
+  <div class="bg-phone"><div class="bg-phone-frame"></div></div>
 
-    <!-- LEFT: For Venues -->
-    <a href="for-business.html" class="split-half split-venues">
-      <div class="sh-content">
-        <div class="sh-label">For bar &amp; venue owners</div>
-        <div class="sh-icon">🍺</div>
-        <h2 class="sh-headline">Fill your bar<br/>on slow nights.</h2>
-        <p class="sh-desc">Post an event. Watch RSVPs cascade through friend networks. Know your headcount before doors open — zero ad spend.</p>
-        <a href="for-business.html" class="sh-cta">
-          See how it works <span class="sh-cta-arrow">→</span>
-        </a>
-      </div>
-    </a>
+  <!-- Logo -->
+  <a href="index.html" class="logo-wrap">
+    <img src="logo.png" alt="BeThere" class="logo-img"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+    <span class="logo-fallback"><span class="logo-be">Be</span>There</span>
+  </a>
 
-    <!-- RIGHT: For People -->
-    <a href="for-users.html" class="split-half split-users">
-      <div class="sh-content">
-        <div class="sh-label">Find your night</div>
-        <div class="sh-icon">🎉</div>
-        <h2 class="sh-headline">Stop asking<br/>"what's going on?"</h2>
-        <p class="sh-desc">One feed. Real events near you, where your friends are RSVPing, and which spots are actually worth your night.</p>
-        <a href="for-users.html" class="sh-cta">
-          Get early access <span class="sh-cta-arrow">→</span>
-        </a>
-      </div>
-    </a>
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-eyebrow">Eau Claire, WI · Launching April 2026</div>
+    <h1 class="hero-tagline">The app that gets you<br/><span>off your phone.</span></h1>
+    <p class="hero-sub">Find where tonight is actually happening — or fill your bar with real RSVPs. Two sides. One app.</p>
 
-  </div>
+    <div class="hero-btns">
+      <!-- Venue CTA -->
+      <a href="for-business.html" class="btn btn-venue">
+        <span class="btn-icon">🍺</span>
+        <span class="btn-label">
+          <span class="btn-label-top">I own a venue</span>
+          <span class="btn-label-main">Fill my bar →</span>
+        </span>
+      </a>
 
-  <!-- SEAM: crisp line + radial glow behind medallion -->
-  <div class="split-seam"></div>
-
-  <!-- CENTER MEDALLION: brand anchor at the seam -->
-  <div class="center-medallion">
-    <div class="cm-inner">
-      <img src="logo.png" alt="BeThere"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-      <span class="cm-fallback">B</span>
+      <!-- User CTA -->
+      <a href="https://app.betheresocial.com/login" class="btn btn-user">
+        <span class="btn-icon">🎉</span>
+        <span class="btn-label">
+          <span class="btn-label-top">I want to go out</span>
+          <span class="btn-label-main">Find my night →</span>
+        </span>
+      </a>
     </div>
   </div>
 
-  <!-- ACCOLADE BAR -->
-  <div class="l-accolade">
-    Built at UW–Eau Claire &nbsp;·&nbsp; Fan Favorite · Hatch 2025 &nbsp;·&nbsp; Launching April 2026
-  </div>
-
+  <div class="accolade">Built at UW–Eau Claire &nbsp;·&nbsp; Fan Favorite · Hatch 2025</div>
+</div>
 </body>
 </html>

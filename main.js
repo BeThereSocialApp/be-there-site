@@ -33,10 +33,15 @@ const nav       = document.getElementById('nav');
 // Map each nav link data-section to a section id
 const sectionMap = {
   home:     'home',
-  students: 'students',
   how:      'how',
+  demo:     'demo',
+  signup:   'signup',
+  why:      'why',
+  features: 'features',
+  roi:      'roi',
   pricing:  'pricing',
-  about:    'about',
+  team:     'team',
+  story:    'story',
 };
 
 function setActiveNav(id) {
@@ -135,7 +140,7 @@ if (form) {
     e.preventDefault();
     const btn = form.querySelector('button');
     btn.textContent = "You're on the list 🎉";
-    btn.style.background = '#A8C97F';
+    btn.style.background = '#22C55E';
     btn.disabled = true;
   });
 }
