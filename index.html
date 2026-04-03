@@ -13,25 +13,10 @@
 
     html, body {
       height: 100%;
-      overflow: hidden; /* lock scroll on landing */
+      overflow: hidden;
       font-family: 'Poppins', sans-serif;
       -webkit-font-smoothing: antialiased;
     }
-
-    /* ── HEADER BAR ─────────────────────────────────── */
-    .l-header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      height: 64px; padding: 0 32px;
-      display: flex; align-items: center; justify-content: center;
-      pointer-events: none;
-    }
-    .l-header .logo-wrap { pointer-events: all; }
-    .logo-img { height: 34px; display: block; }
-    .logo-text {
-      font-size: 22px; font-weight: 800; color: #fff;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    }
-    .logo-be { color: var(--olive-light, #A3CC72); }
 
     /* ── SPLIT LAYOUT ───────────────────────────────── */
     .split {
@@ -39,7 +24,6 @@
       width: 100vw; height: 100vh;
     }
 
-    /* Each half */
     .split-half {
       flex: 1 1 0;
       min-width: 0;
@@ -48,158 +32,153 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 80px 56px 48px;
+      padding: 72px 64px 56px;
       text-decoration: none;
       overflow: hidden;
-      transition: flex 0.55s cubic-bezier(0.77,0,0.18,1);
       cursor: pointer;
     }
-    .split-half:hover { flex: 1.18 1 0; }
 
     /* Venues side — dark purple */
     .split-venues {
-      background: linear-gradient(145deg, #2E2478 0%, #1A1650 100%);
+      background: linear-gradient(160deg, #312885 0%, #1C1858 100%);
       color: #fff;
     }
-    /* Orb */
     .split-venues::before {
       content: '';
-      position: absolute; top: -120px; right: -120px;
-      width: 420px; height: 420px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(107,93,192,0.45) 0%, transparent 70%);
+      position: absolute; top: -80px; right: -80px;
+      width: 380px; height: 380px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(107,93,192,0.35) 0%, transparent 70%);
       pointer-events: none;
     }
 
     /* Users side — light/soft */
     .split-users {
-      background: linear-gradient(145deg, #f3f8ed 0%, #e8f5d8 50%, #f7f4ff 100%);
-      color: var(--text, #0F0F14);
+      background: linear-gradient(160deg, #f5f9f0 0%, #eaf5db 60%, #f4f0ff 100%);
+      color: #0F0F14;
     }
     .split-users::before {
       content: '';
-      position: absolute; bottom: -120px; left: -120px;
-      width: 420px; height: 420px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(123,173,71,0.22) 0%, transparent 70%);
+      position: absolute; bottom: -80px; left: -80px;
+      width: 380px; height: 380px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,173,71,0.18) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    /* Divider line */
-    .split-divider {
-      position: absolute;
+    /* ── SEAM ───────────────────────────────────────── */
+    /* Radial glow behind the medallion anchors the seam */
+    .split-seam {
+      position: fixed;
       top: 0; bottom: 0;
       left: 50%;
+      width: 0;
+      z-index: 20;
+      pointer-events: none;
+    }
+    .split-seam::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: -1px;
       width: 1px;
       background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(255,255,255,0.25) 30%,
-        rgba(255,255,255,0.25) 70%,
+        rgba(255,255,255,0.18) 20%,
+        rgba(255,255,255,0.32) 50%,
+        rgba(255,255,255,0.18) 80%,
         transparent 100%);
-      z-index: 10;
-      pointer-events: none;
+    }
+    .split-seam::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 180px; height: 180px; border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(107,93,192,0.18) 0%,
+        rgba(107,93,192,0.06) 50%,
+        transparent 70%);
     }
 
-    /* Content inside each half */
+    /* ── CONTENT ────────────────────────────────────── */
     .sh-content {
       position: relative; z-index: 2;
       display: flex; flex-direction: column;
       align-items: center; text-align: center;
-      max-width: 420px;
+      max-width: 400px;
     }
 
     .sh-label {
       font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; margin-bottom: 20px;
+      text-transform: uppercase; margin-bottom: 22px;
       padding: 5px 14px; border-radius: 999px;
     }
     .split-venues .sh-label {
-      background: rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.65);
     }
     .split-users .sh-label {
-      background: rgba(90,132,50,0.14);
-      color: var(--olive-dark, #5A8432);
+      background: rgba(90,132,50,0.12);
+      color: #4d7a28;
     }
 
     .sh-icon {
-      font-size: 52px; margin-bottom: 24px;
-      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.15));
+      font-size: 48px; margin-bottom: 20px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12));
     }
 
     .sh-headline {
-      font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+      font-size: clamp(1.65rem, 2.6vw, 2.4rem);
       font-weight: 800; line-height: 1.15;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
     .split-venues .sh-headline { color: #fff; }
-    .split-users  .sh-headline { color: var(--text, #0F0F14); }
+    .split-users  .sh-headline { color: #0F0F14; }
 
     .sh-desc {
-      font-size: 15px; line-height: 1.65; margin-bottom: 36px;
+      font-size: 14.5px; line-height: 1.7; margin-bottom: 36px;
     }
-    .split-venues .sh-desc { color: rgba(255,255,255,0.68); }
-    .split-users  .sh-desc { color: var(--grey-500, #6B6985); }
+    .split-venues .sh-desc { color: rgba(255,255,255,0.60); }
+    .split-users  .sh-desc { color: #6B6985; }
 
     .sh-cta {
       display: inline-flex; align-items: center; gap: 8px;
-      font-size: 15px; font-weight: 700; padding: 14px 30px;
+      font-size: 14.5px; font-weight: 700; padding: 13px 28px;
       border-radius: 999px; border: none; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
       text-decoration: none; letter-spacing: 0.01em;
     }
-    .sh-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.22); }
+    .sh-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.20); }
+    .split-venues .sh-cta { background: #fff; color: #2E2478; }
+    .split-users  .sh-cta { background: #5B4FB5; color: #fff; }
 
-    .split-venues .sh-cta {
-      background: #fff; color: var(--purple-darker, #2E2478);
-    }
-    .split-users .sh-cta {
-      background: var(--purple, #6B5DC0); color: #fff;
-    }
-    .sh-cta-arrow {
-      display: inline-block;
-      transition: transform 0.2s;
-    }
+    .sh-cta-arrow { display: inline-block; transition: transform 0.18s ease; }
     .sh-cta:hover .sh-cta-arrow { transform: translateX(4px); }
 
-    /* Mini phone mockup in each half */
-    .sh-phone-wrap {
-      position: absolute;
-      bottom: 0;
-      opacity: 0.12;
-      pointer-events: none;
-      transform: rotate(-5deg) translateY(30px);
-      transition: opacity 0.4s, transform 0.4s;
-    }
-    .split-half:hover .sh-phone-wrap {
-      opacity: 0.18;
-      transform: rotate(-3deg) translateY(15px);
-    }
-    .sh-phone-wrap-right {
-      right: 10%;
-      transform: rotate(5deg) translateY(30px);
-    }
-    .split-half:hover .sh-phone-wrap-right {
-      transform: rotate(3deg) translateY(15px);
-    }
-
-    /* ── CENTER LOGO BADGE ──────────────────────────── */
-    .center-badge {
+    /* ── CENTER MEDALLION ───────────────────────────── */
+    .center-medallion {
       position: fixed;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 50;
+      z-index: 100;
       pointer-events: none;
     }
-    .center-badge-inner {
+    .cm-inner {
+      width: 72px; height: 72px;
+      border-radius: 50%;
       background: #fff;
-      border-radius: 20px;
-      padding: 14px 20px;
-      box-shadow: 0 8px 40px rgba(46,36,120,0.22), 0 2px 8px rgba(0,0,0,0.08);
-      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      box-shadow:
+        0 0 0 1px rgba(107,93,192,0.12),
+        0 4px 24px rgba(46,36,120,0.20),
+        0 1px 6px rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
     }
-    .cb-tagline {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--grey-400, #8E8BA8);
+    .cm-inner img {
+      width: 44px; height: 44px; object-fit: contain; display: block;
+    }
+    .cm-inner .cm-fallback {
+      font-size: 17px; font-weight: 800; color: #2E2478; letter-spacing: -0.02em;
+      display: none;
     }
 
     /* ── BOTTOM ACCOLADE BAR ────────────────────────── */
@@ -207,44 +186,22 @@
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
       text-align: center; padding: 10px 24px;
       font-size: 11px; font-weight: 500;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.42);
       pointer-events: none;
     }
-
-    /* ── HOVER LABEL ARROWS ─────────────────────────── */
-    .sh-hover-hint {
-      position: absolute;
-      bottom: 36px; left: 50%; transform: translateX(-50%);
-      font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-      opacity: 0; transition: opacity 0.3s;
-      white-space: nowrap;
-    }
-    .split-venues .sh-hover-hint { color: rgba(255,255,255,0.45); }
-    .split-users  .sh-hover-hint { color: var(--grey-400, #8E8BA8); }
-    .split-half:hover .sh-hover-hint { opacity: 1; }
 
     /* ── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 700px) {
       html, body { overflow: auto; }
       .split { flex-direction: column; height: auto; }
-      .split-half { min-height: 50vh; padding: 100px 32px 60px; }
-      .split-half:hover { flex: 1; }
-      .split-divider { top: 50%; bottom: auto; left: 0; right: 0; width: auto; height: 1px; }
-      .center-badge { display: none; }
+      .split-half { min-height: 50vh; padding: 80px 32px 60px; }
+      .split-seam { display: none; }
+      .center-medallion { display: none; }
       .sh-headline { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
-
-  <!-- HEADER: logo centered -->
-  <header class="l-header">
-    <a href="index.html" class="logo-wrap">
-      <img src="logo.png" alt="BeThere" class="logo-img"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-      <span style="display:none" class="logo-text"><span class="logo-be">Be</span>There</span>
-    </a>
-  </header>
 
   <!-- FULL-SCREEN SPLIT -->
   <div class="split">
@@ -260,11 +217,7 @@
           See how it works <span class="sh-cta-arrow">→</span>
         </a>
       </div>
-      <span class="sh-hover-hint">for venue owners</span>
     </a>
-
-    <!-- DIVIDER -->
-    <div class="split-divider"></div>
 
     <!-- RIGHT: For People -->
     <a href="for-users.html" class="split-half split-users">
@@ -277,16 +230,19 @@
           Get early access <span class="sh-cta-arrow">→</span>
         </a>
       </div>
-      <span class="sh-hover-hint">for people going out</span>
     </a>
 
   </div>
 
-  <!-- CENTER BADGE: tagline floats in the divide -->
-  <div class="center-badge">
-    <div class="center-badge-inner">
-      <span class="cb-tagline">The app that gets you</span>
-      <span style="font-size:13px;font-weight:800;color:var(--purple,#6B5DC0);letter-spacing:0.01em">off your phone.</span>
+  <!-- SEAM: crisp line + radial glow behind medallion -->
+  <div class="split-seam"></div>
+
+  <!-- CENTER MEDALLION: brand anchor at the seam -->
+  <div class="center-medallion">
+    <div class="cm-inner">
+      <img src="logo.png" alt="BeThere"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+      <span class="cm-fallback">B</span>
     </div>
   </div>
 
