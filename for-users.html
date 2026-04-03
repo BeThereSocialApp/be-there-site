@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BeThere — Find where tonight is actually happening.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="logo-wrap" href="index.html">
+        <img src="logo.png" alt="BeThere" class="logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+        <span style="display:none" class="logo-text"><span class="logo-be">Be</span>There</span>
+      </a>
+      <div class="nav-links">
+        <a href="#how"     class="nav-link" data-section="how">How It Works</a>
+        <a href="#demo"    class="nav-link" data-section="demo">See the App</a>
+        <a href="#signup"  class="nav-link" data-section="signup">Get Early Access</a>
+      </div>
+      <div class="nav-ctas">
+        <a href="for-business.html" class="btn-ghost" style="font-size:13px">For venues →</a>
+        <a href="#signup" class="btn-primary">Join waitlist</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="section" id="home" style="padding-top:100px;padding-bottom:60px;background:linear-gradient(160deg,#f7f4ff 0%,#ffffff 60%,#f3f8ed 100%);overflow:hidden;position:relative">
+    <div class="landing-orb-1" style="top:-60px;left:-80px;opacity:0.35"></div>
+    <div class="landing-orb-2" style="bottom:-60px;right:-80px;opacity:0.25"></div>
+
+    <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+
+      <!-- Left: copy -->
+      <div>
+        <div class="chip chip-olive reveal" style="margin-bottom:16px">Find your night</div>
+        <h1 style="font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.12;font-weight:800;color:var(--text);margin-bottom:20px" class="reveal reveal-delay-1">
+          Find where<br/>tonight is<br/><span style="color:var(--purple)">actually happening.</span>
+        </h1>
+        <p style="font-size:18px;color:var(--grey-500);line-height:1.65;margin-bottom:36px;max-width:440px" class="reveal reveal-delay-2">
+          Eventbrite is for concerts three weeks out. Instagram buries the good stuff. BeThere is the real-time layer — events near you, where your friends are RSVPing, and which spots are actually worth your night. Tonight.
+        </p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap" class="reveal reveal-delay-3">
+          <a href="#signup" class="btn-primary btn-lg">Get early access</a>
+          <a href="#demo" class="btn-ghost" style="font-size:15px;font-weight:600">See the app →</a>
+        </div>
+
+        <!-- Social proof strip -->
+        <div style="display:flex;align-items:center;gap:20px;margin-top:40px;padding-top:32px;border-top:1px solid var(--grey-200)" class="reveal reveal-delay-4">
+          <div style="display:flex">
+            <div class="dpav dpav-purple" style="width:34px;height:34px;font-size:13px;margin-right:-8px;border:2px solid #fff">S</div>
+            <div class="dpav dpav-dark"   style="width:34px;height:34px;font-size:13px;margin-right:-8px;border:2px solid #fff">J</div>
+            <div class="dpav dpav-olive"  style="width:34px;height:34px;font-size:13px;margin-right:-8px;border:2px solid #fff">M</div>
+            <div class="dpav dpav-purple" style="width:34px;height:34px;font-size:13px;border:2px solid #fff">A</div>
+          </div>
+          <div style="font-size:14px;color:var(--grey-500)">
+            <strong style="color:var(--text)">Hundreds of people</strong> already on the waitlist
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: phone mockup -->
+      <div class="reveal reveal-delay-2" style="display:flex;justify-content:center;position:relative">
+        <div class="hero-phone" style="transform:rotate(3deg)">
+          <div class="hero-phone-notch"></div>
+          <div class="hero-phone-screen">
+            <div class="dscreen-status"><span class="ds-time">9:41</span></div>
+            <div class="dscreen-appbar">
+              <span class="dscreen-logo"><span style="color:var(--purple);font-weight:800">Be</span><span style="font-weight:800">There</span></span>
+              <div class="dscreen-bell">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+                <span class="dbell-dot"></span>
+              </div>
+            </div>
+            <div class="dscreen-tabs">
+              <span class="dtab dtab-active">Near You</span>
+              <span class="dtab">Friends</span>
+              <span class="dtab">RSVP'd</span>
+            </div>
+            <div class="dscreen-feed">
+              <div class="dcard">
+                <div class="dcard-header">
+                  <div><div class="dcard-name">Trivia Night 🧠</div><div class="dcard-venue">The Pickle Bar · Thu 7 PM</div></div>
+                  <span class="dtag dtag-social">SOCIAL</span>
+                </div>
+                <div class="dcard-footer">
+                  <div class="dpav-row">
+                    <div class="dpav dpav-purple">S</div><div class="dpav dpav-dark">J</div><div class="dpav dpav-olive">M</div>
+                    <span class="dpav-count">+22 going</span>
+                  </div>
+                  <button class="drsvp">RSVP</button>
+                </div>
+              </div>
+              <div class="dcard">
+                <div class="dcard-header">
+                  <div><div class="dcard-name">$2 Tuesday 🍺</div><div class="dcard-venue">Shenanigans · Tue 9 PM</div></div>
+                  <span class="dtag dtag-deal">DEAL</span>
+                </div>
+                <div class="dcard-footer">
+                  <div class="dpav-row">
+                    <div class="dpav dpav-purple">A</div><div class="dpav dpav-dark">K</div>
+                    <span class="dpav-count">+15 going</span>
+                  </div>
+                  <button class="drsvp drsvp-done">RSVP'd ✓</button>
+                </div>
+              </div>
+              <div class="dcard">
+                <div class="dcard-header">
+                  <div><div class="dcard-name">Live Music 🎶</div><div class="dcard-venue">The Joynt · Fri 8 PM</div></div>
+                  <span class="dtag dtag-live">LIVE</span>
+                </div>
+                <div class="dcard-footer">
+                  <div class="dpav-row">
+                    <div class="dpav dpav-olive">T</div><div class="dpav dpav-purple">R</div>
+                    <span class="dpav-count">+31 going</span>
+                  </div>
+                  <button class="drsvp">RSVP</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating badge -->
+        <div class="hero-badge hero-badge-right" style="bottom:60px;right:-10px">
+          <span class="hb-icon">📣</span>
+          <div><div class="hb-title">3 friends RSVP'd</div><div class="hb-sub">Trivia Night · just now</div></div>
+        </div>
+        <div class="hero-badge hero-badge-left" style="top:80px;left:-10px">
+          <span class="hb-icon">🔥</span>
+          <div><div class="hb-title">Trending tonight</div><div class="hb-sub">47 viewing · rising</div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="section" style="padding:72px 0;background:#fff">
+    <div class="container">
+      <div style="text-align:center;max-width:600px;margin:0 auto 56px" class="reveal">
+        <div class="chip chip-purple" style="margin-bottom:16px">Sound familiar?</div>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;margin-bottom:0">The Friday night group chat problem.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+        <div class="reveal" style="background:#f7f4ff;border-radius:var(--radius-lg);padding:32px;border:1px solid var(--grey-200)">
+          <div style="font-size:36px;margin-bottom:16px">💬</div>
+          <div style="font-weight:700;font-size:17px;color:var(--text);margin-bottom:8px">"What's everyone doing?"</div>
+          <div style="font-size:15px;color:var(--grey-500);line-height:1.6">You send it every Thursday. Half the group doesn't respond until Saturday.</div>
+        </div>
+        <div class="reveal reveal-delay-1" style="background:#f7f4ff;border-radius:var(--radius-lg);padding:32px;border:1px solid var(--grey-200)">
+          <div style="font-size:36px;margin-bottom:16px">🤷</div>
+          <div style="font-weight:700;font-size:17px;color:var(--text);margin-bottom:8px">FOMO is real.</div>
+          <div style="font-size:15px;color:var(--grey-500);line-height:1.6">You find out at 11 PM that your whole friend group was at the same bar — you just didn't know.</div>
+        </div>
+        <div class="reveal reveal-delay-2" style="background:#f7f4ff;border-radius:var(--radius-lg);padding:32px;border:1px solid var(--grey-200)">
+          <div style="font-size:36px;margin-bottom:16px">📱</div>
+          <div style="font-weight:700;font-size:17px;color:var(--text);margin-bottom:8px">Too many apps, zero answers.</div>
+          <div style="font-size:15px;color:var(--grey-500);line-height:1.6">Eventbrite's for concerts in 3 weeks. Instagram buries the post. Neither tells you where your people are going <em>right now</em>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how" style="padding:80px 0;background:linear-gradient(160deg,#f3f8ed 0%,#ffffff 100%)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px" class="reveal">
+        <div class="chip chip-olive" style="margin-bottom:16px">How it works</div>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800">From "what's everyone doing?" to out the door in minutes.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px">
+        <div class="reveal" style="text-align:center;padding:32px 24px">
+          <div style="width:64px;height:64px;background:var(--purple);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:26px">🗺️</div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:var(--purple);margin-bottom:8px">STEP 1</div>
+          <div style="font-weight:700;font-size:18px;color:var(--text);margin-bottom:10px">Browse tonight</div>
+          <div style="font-size:15px;color:var(--grey-500);line-height:1.6">Open BeThere and see every event, deal, and live act happening near you tonight — one feed, no algorithm, no noise.</div>
+        </div>
+        <div class="reveal reveal-delay-1" style="text-align:center;padding:32px 24px">
+          <div style="width:64px;height:64px;background:var(--olive-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:26px">✅</div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:var(--olive-dark);margin-bottom:8px">STEP 2</div>
+          <div style="font-weight:700;font-size:18px;color:var(--text);margin-bottom:10px">RSVP in one tap</div>
+          <div style="font-size:15px;color:var(--grey-500);line-height:1.6">Hit RSVP and your whole network sees it. Their feeds update. The venue knows you're coming. Plans form without a single group text.</div>
+        </div>
+        <div class="reveal reveal-delay-2" style="text-align:center;padding:32px 24px">
+          <div style="width:64px;height:64px;background:var(--purple-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:26px">🍻</div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:var(--purple-dark);margin-bottom:8px">STEP 3</div>
+          <div style="font-weight:700;font-size:18px;color:var(--text);margin-bottom:10px">Show up</div>
+          <div style="font-size:15px;color:var(--grey-500);line-height:1.6">Put the phone away. You already know where you're going, who's going, and what's worth your time. That's the whole point.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE DEMO -->
+  <section class="section" id="demo" style="padding:80px 0;background:#fff">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px" class="reveal">
+        <div class="chip chip-purple" style="margin-bottom:16px">See the app</div>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800">What it actually looks like.</h2>
+        <p style="font-size:17px;color:var(--grey-500);margin-top:12px">Walk through the experience — no download required.</p>
+      </div>
+
+      <div class="demo-layout">
+
+        <!-- Phone -->
+        <div class="demo-phone-wrap">
+          <div class="demo-phone">
+            <div class="demo-phone-notch"></div>
+            <div class="demo-phone-screen">
+
+              <!-- Screen 0: Near You feed -->
+              <div class="dscreen dscreen-active">
+                <div class="dscreen-status"><span class="ds-time">9:41</span></div>
+                <div class="dscreen-appbar">
+                  <span class="dscreen-logo"><span style="color:var(--purple);font-weight:800">Be</span><span style="font-weight:800">There</span></span>
+                  <div class="dscreen-bell">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+                    <span class="dbell-dot"></span>
+                  </div>
+                </div>
+                <div class="dscreen-tabs">
+                  <span class="dtab dtab-active">Near You</span>
+                  <span class="dtab">Friends</span>
+                  <span class="dtab">RSVP'd</span>
+                </div>
+                <div class="dscreen-feed">
+                  <div class="dcard dcard-tap" data-goto="1">
+                    <div class="dcard-header">
+                      <div><div class="dcard-name">Trivia Night 🧠</div><div class="dcard-venue">The Pickle Bar · Thu 7 PM</div></div>
+                      <span class="dtag dtag-social">SOCIAL</span>
+                    </div>
+                    <div class="dcard-footer">
+                      <div class="dpav-row"><div class="dpav dpav-purple">S</div><div class="dpav dpav-dark">J</div><div class="dpav dpav-olive">M</div><span class="dpav-count">+22 going</span></div>
+                      <button class="drsvp">RSVP</button>
+                    </div>
+                  </div>
+                  <div class="dcard dcard-tap" data-goto="2">
+                    <div class="dcard-header">
+                      <div><div class="dcard-name">$2 Tuesday 🍺</div><div class="dcard-venue">Shenanigans · Tue 9 PM</div></div>
+                      <span class="dtag dtag-deal">DEAL</span>
+                    </div>
+                    <div class="dcard-footer">
+                      <div class="dpav-row"><div class="dpav dpav-purple">A</div><div class="dpav dpav-dark">K</div><span class="dpav-count">+15 going</span></div>
+                      <button class="drsvp drsvp-done">RSVP'd ✓</button>
+                    </div>
+                  </div>
+                  <div class="dcard">
+                    <div class="dcard-header">
+                      <div><div class="dcard-name">Live Music 🎶</div><div class="dcard-venue">The Joynt · Fri 8 PM</div></div>
+                      <span class="dtag dtag-live">LIVE</span>
+                    </div>
+                    <div class="dcard-footer">
+                      <div class="dpav-row"><div class="dpav dpav-olive">T</div><div class="dpav dpav-purple">R</div><span class="dpav-count">+31 going</span></div>
+                      <button class="drsvp">RSVP</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screen 1: Event detail -->
+              <div class="dscreen">
+                <div class="dscreen-status"><span class="ds-time">9:41</span></div>
+                <div class="dscreen-appbar">
+                  <span style="font-size:11px;color:var(--grey-400);cursor:pointer" class="dcard-tap" data-goto="0">← Back</span>
+                  <span class="dscreen-logo" style="font-size:13px"><span style="color:var(--purple);font-weight:800">Be</span><span style="font-weight:800">There</span></span>
+                </div>
+                <div style="padding:0 12px 12px">
+                  <div style="background:linear-gradient(135deg,var(--purple),var(--purple-dark));border-radius:10px;padding:16px;color:#fff;margin-bottom:12px">
+                    <div style="font-size:20px;margin-bottom:4px">🧠</div>
+                    <div style="font-weight:800;font-size:15px">Trivia Night</div>
+                    <div style="font-size:11px;opacity:0.8;margin-top:2px">The Pickle Bar · Thursday 7 PM</div>
+                    <div style="margin-top:10px;font-size:11px;background:rgba(255,255,255,0.2);border-radius:6px;padding:6px 10px;display:inline-block">📍 0.3 miles away</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--grey-400);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em">Friends going</div>
+                  <div style="display:flex;gap:8px;margin-bottom:14px">
+                    <div style="display:flex;align-items:center;gap:6px;background:var(--grey-100);border-radius:20px;padding:5px 10px">
+                      <div class="dpav dpav-purple" style="width:22px;height:22px;font-size:9px">S</div>
+                      <span style="font-size:11px;color:var(--text)">Sarah</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;background:var(--grey-100);border-radius:20px;padding:5px 10px">
+                      <div class="dpav dpav-dark" style="width:22px;height:22px;font-size:9px">J</div>
+                      <span style="font-size:11px;color:var(--text)">Jake</span>
+                    </div>
+                  </div>
+                  <div style="font-size:12px;color:var(--grey-500);margin-bottom:14px;line-height:1.5">Teams of 4–6 compete across 5 rounds. Prizes for top 3 teams. Free to enter — just show up.</div>
+                  <button class="drsvp dcard-tap" data-goto="2" style="width:100%;padding:10px;font-size:13px;font-weight:700;background:var(--purple);color:#fff;border:none;border-radius:8px;cursor:pointer">RSVP — I'm in 🎉</button>
+                </div>
+              </div>
+
+              <!-- Screen 2: After RSVP / Friends notified -->
+              <div class="dscreen">
+                <div class="dscreen-status"><span class="ds-time">9:42</span></div>
+                <div class="dscreen-appbar">
+                  <span class="dscreen-logo"><span style="color:var(--purple);font-weight:800">Be</span><span style="font-weight:800">There</span></span>
+                </div>
+                <div style="padding:12px;display:flex;flex-direction:column;gap:10px">
+                  <div style="background:linear-gradient(135deg,#7BAD47,#5A8432);border-radius:10px;padding:14px;color:#fff;text-align:center">
+                    <div style="font-size:22px;margin-bottom:4px">✅</div>
+                    <div style="font-weight:800;font-size:13px">You're going to Trivia Night!</div>
+                    <div style="font-size:11px;opacity:0.85;margin-top:3px">Your friends just got notified</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--grey-400);font-weight:700;text-transform:uppercase;letter-spacing:0.06em">Friend notifications sent</div>
+                  <div style="background:var(--grey-100);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:8px">
+                    <div class="dpav dpav-olive" style="width:26px;height:26px;font-size:10px;flex-shrink:0">M</div>
+                    <div style="font-size:11px;color:var(--text)"><strong>Morgan</strong> saw your RSVP and just joined too →</div>
+                  </div>
+                  <div style="background:var(--grey-100);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:8px">
+                    <div class="dpav dpav-dark" style="width:26px;height:26px;font-size:10px;flex-shrink:0">B</div>
+                    <div style="font-size:11px;color:var(--text)"><strong>Blake</strong> is interested · 2 mutual friends going</div>
+                  </div>
+                  <div style="background:var(--grey-100);border-radius:8px;padding:10px 12px">
+                    <div style="font-size:11px;color:var(--grey-500);margin-bottom:6px">RSVPs for Trivia Night</div>
+                    <div style="font-size:20px;font-weight:800;color:var(--text)">25 going</div>
+                    <div style="height:4px;background:var(--grey-200);border-radius:2px;margin-top:6px"><div style="height:4px;width:70%;background:var(--purple);border-radius:2px"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screen 3: Friends tab -->
+              <div class="dscreen">
+                <div class="dscreen-status"><span class="ds-time">9:43</span></div>
+                <div class="dscreen-appbar">
+                  <span class="dscreen-logo"><span style="color:var(--purple);font-weight:800">Be</span><span style="font-weight:800">There</span></span>
+                </div>
+                <div class="dscreen-tabs">
+                  <span class="dtab">Near You</span>
+                  <span class="dtab dtab-active">Friends</span>
+                  <span class="dtab">RSVP'd</span>
+                </div>
+                <div class="dscreen-feed">
+                  <div style="font-size:11px;color:var(--grey-400);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Tonight's plans</div>
+                  <div class="dcard">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+                      <div class="dpav dpav-purple" style="width:28px;height:28px;font-size:11px">S</div>
+                      <div><div style="font-size:11px;font-weight:700;color:var(--text)">Sarah + 2 others</div><div style="font-size:10px;color:var(--grey-400)">Trivia Night · The Pickle Bar</div></div>
+                    </div>
+                    <span class="dtag dtag-social" style="font-size:9px">SOCIAL</span>
+                  </div>
+                  <div class="dcard">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+                      <div class="dpav dpav-olive" style="width:28px;height:28px;font-size:11px">T</div>
+                      <div><div style="font-size:11px;font-weight:700;color:var(--text)">Taylor + 4 others</div><div style="font-size:10px;color:var(--grey-400)">Live Music · The Joynt</div></div>
+                    </div>
+                    <span class="dtag dtag-live" style="font-size:9px">LIVE</span>
+                  </div>
+                  <div class="dcard">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+                      <div class="dpav dpav-dark" style="width:28px;height:28px;font-size:11px">K</div>
+                      <div><div style="font-size:11px;font-weight:700;color:var(--text)">Kyle</div><div style="font-size:10px;color:var(--grey-400)">$2 Tuesday · Shenanigans</div></div>
+                    </div>
+                    <span class="dtag dtag-deal" style="font-size:9px">DEAL</span>
+                  </div>
+                  <div style="background:linear-gradient(135deg,#f7f4ff,#ede9ff);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--purple);font-weight:600;text-align:center">
+                    📣 3 of your friends are going to Trivia Night — you in?
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screen 4: RSVP'd tab -->
+              <div class="dscreen">
+                <div class="dscreen-status"><span class="ds-time">9:44</span></div>
+                <div class="dscreen-appbar">
+                  <span class="dscreen-logo"><span style="color:var(--purple);font-weight:800">Be</span><span style="font-weight:800">There</span></span>
+                </div>
+                <div class="dscreen-tabs">
+                  <span class="dtab">Near You</span>
+                  <span class="dtab">Friends</span>
+                  <span class="dtab dtab-active">RSVP'd</span>
+                </div>
+                <div class="dscreen-feed">
+                  <div style="font-size:11px;color:var(--grey-400);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Your upcoming plans</div>
+                  <div class="dcard" style="border-left:3px solid var(--olive)">
+                    <div class="dcard-header">
+                      <div><div class="dcard-name">Trivia Night 🧠</div><div class="dcard-venue">The Pickle Bar · Tonight 7 PM</div></div>
+                      <span class="dtag dtag-social">SOCIAL</span>
+                    </div>
+                    <div style="font-size:10px;color:var(--olive-dark);font-weight:700;margin-top:6px">✓ You + 5 friends going</div>
+                  </div>
+                  <div class="dcard" style="opacity:0.6">
+                    <div class="dcard-header">
+                      <div><div class="dcard-name">Live Music 🎶</div><div class="dcard-venue">The Joynt · Fri 8 PM</div></div>
+                      <span class="dtag dtag-live">LIVE</span>
+                    </div>
+                    <div style="font-size:10px;color:var(--grey-400);margin-top:6px">Friday · 2 days away</div>
+                  </div>
+                  <div style="background:var(--grey-100);border-radius:8px;padding:12px;text-align:center">
+                    <div style="font-size:12px;color:var(--grey-500)">Launching soon — stay tuned</div>
+                    <div style="font-size:11px;color:var(--grey-400);margin-top:4px">Notifications, calendar sync & more</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Step copy -->
+        <div class="demo-steps">
+          <div class="demo-step active" data-step="0">
+            <div class="demo-step-num">01</div>
+            <div class="demo-step-title">Browse what's near you</div>
+            <div class="demo-step-desc">One feed. Every event, deal, and live act at venues near you — updated in real time as RSVPs come in.</div>
+          </div>
+          <div class="demo-step" data-step="1">
+            <div class="demo-step-num">02</div>
+            <div class="demo-step-title">Tap into the details</div>
+            <div class="demo-step-desc">See what the vibe is, which friends are already going, and everything you need to decide in seconds.</div>
+          </div>
+          <div class="demo-step" data-step="2">
+            <div class="demo-step-num">03</div>
+            <div class="demo-step-title">RSVP — your friends see it instantly</div>
+            <div class="demo-step-desc">One tap and your social circle gets notified. Plans form on their own. The group chat problem is solved.</div>
+          </div>
+          <div class="demo-step" data-step="3">
+            <div class="demo-step-num">04</div>
+            <div class="demo-step-title">See where your crew is heading</div>
+            <div class="demo-step-desc">The Friends tab shows you tonight's plans across your whole network at a glance — no asking required.</div>
+          </div>
+          <div class="demo-step" data-step="4">
+            <div class="demo-step-num">05</div>
+            <div class="demo-step-title">Your plans, in one place</div>
+            <div class="demo-step-desc">RSVP'd tab keeps everything organized. Know where you're going, who's coming, and when — before you leave.</div>
+          </div>
+
+          <div class="demo-nav">
+            <button class="demo-prev">←</button>
+            <div class="demo-dots">
+              <span class="demo-dot active" data-step="0"></span>
+              <span class="demo-dot" data-step="1"></span>
+              <span class="demo-dot" data-step="2"></span>
+              <span class="demo-dot" data-step="3"></span>
+              <span class="demo-dot" data-step="4"></span>
+            </div>
+            <button class="demo-next">→</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL LOOP / WHY IT WORKS -->
+  <section class="section" style="padding:80px 0;background:linear-gradient(160deg,#2E2478 0%,#4A3D9E 100%);color:#fff">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:52px" class="reveal">
+        <div style="display:inline-block;background:rgba(255,255,255,0.15);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;letter-spacing:0.06em;margin-bottom:16px">WHY IT WORKS</div>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:#fff">One tap moves the whole group.</h2>
+        <p style="font-size:17px;color:rgba(255,255,255,0.75);margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto">You RSVP. Your friends see it. They RSVP. Their friends see it. In minutes, the whole group ends up in the same place — without a single "so what are we doing?" text.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:800px;margin:0 auto" class="reveal">
+        <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius-lg);padding:28px;text-align:center">
+          <div style="font-size:32px;margin-bottom:12px">1️⃣</div>
+          <div style="font-weight:700;color:#fff;margin-bottom:8px">You RSVP</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.5">Takes one tap. Your whole network sees you're going.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius-lg);padding:28px;text-align:center;position:relative">
+          <div style="position:absolute;top:50%;left:-16px;transform:translateY(-50%);font-size:20px">→</div>
+          <div style="font-size:32px;margin-bottom:12px">👥</div>
+          <div style="font-weight:700;color:#fff;margin-bottom:8px">Friends see it</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.5">They get notified. The event climbs their feed. FOMO kicks in.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius-lg);padding:28px;text-align:center;position:relative">
+          <div style="position:absolute;top:50%;left:-16px;transform:translateY(-50%);font-size:20px">→</div>
+          <div style="font-size:32px;margin-bottom:12px">🎉</div>
+          <div style="font-weight:700;color:#fff;margin-bottom:8px">The group shows up</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.5">No more text chains. Everyone ends up in the same place.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="section" style="padding:80px 0;background:#fff">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:52px" class="reveal">
+        <div class="chip chip-purple" style="margin-bottom:16px">Who uses BeThere</div>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800">For people who actually leave the house.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+        <div class="reveal" style="background:linear-gradient(145deg,#f7f4ff,#ede9ff);border-radius:var(--radius-lg);padding:32px">
+          <div style="font-size:36px;margin-bottom:16px">💼</div>
+          <div style="font-weight:700;font-size:17px;color:var(--text);margin-bottom:8px">Young professionals</div>
+          <div style="font-size:15px;color:var(--grey-500);line-height:1.6">You work hard and play harder. You shouldn't have to spend an hour figuring out where to go — BeThere has it ready before you even ask.</div>
+        </div>
+        <div class="reveal reveal-delay-1" style="background:linear-gradient(145deg,#f3f8ed,#e8f5d8);border-radius:var(--radius-lg);padding:32px">
+          <div style="font-size:36px;margin-bottom:16px">🎓</div>
+          <div style="font-weight:700;font-size:17px;color:var(--text);margin-bottom:8px">College students</div>
+          <div style="font-size:15px;color:var(--grey-500);line-height:1.6">Your friend group is scattered. BeThere shows you exactly where everyone's ending up tonight.</div>
+        </div>
+        <div class="reveal reveal-delay-2" style="background:linear-gradient(145deg,#f7f4ff,#ede9ff);border-radius:var(--radius-lg);padding:32px">
+          <div style="font-size:36px;margin-bottom:16px">🌆</div>
+          <div style="font-weight:700;font-size:17px;color:var(--text);margin-bottom:8px">Social explorers</div>
+          <div style="font-size:15px;color:var(--grey-500);line-height:1.6">New to the city or just tired of the same spots? Discover events you'd never find scrolling Instagram.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST / SIGNUP -->
+  <section class="section" id="signup" style="padding:80px 0;background:linear-gradient(160deg,#f7f4ff 0%,#ffffff 100%)">
+    <div class="container">
+      <div style="max-width:560px;margin:0 auto;text-align:center" class="reveal">
+        <div class="chip chip-olive" style="margin-bottom:16px">Early access</div>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;margin-bottom:16px">Never miss a night again.</h2>
+        <p style="font-size:17px;color:var(--grey-500);margin-bottom:40px;line-height:1.6">BeThere launches April 2026 in Eau Claire, WI — then expanding. Get on the waitlist and we'll let you know the moment the doors open.</p>
+
+        <form class="student-form" style="display:flex;flex-direction:column;gap:14px">
+          <input type="text" placeholder="Your name" required
+                 style="padding:14px 18px;border:1.5px solid var(--grey-200);border-radius:10px;font-size:16px;font-family:inherit;outline:none;transition:border-color 0.2s"
+                 onfocus="this.style.borderColor='var(--purple)'" onblur="this.style.borderColor='var(--grey-200)'" />
+          <input type="email" placeholder="Email address" required
+                 style="padding:14px 18px;border:1.5px solid var(--grey-200);border-radius:10px;font-size:16px;font-family:inherit;outline:none;transition:border-color 0.2s"
+                 onfocus="this.style.borderColor='var(--purple)'" onblur="this.style.borderColor='var(--grey-200)'" />
+          <button type="submit" class="btn-primary btn-lg" style="width:100%;font-size:17px">Get early access →</button>
+          <a href="https://app.betheresocial.com" class="btn-outline" style="width:100%;text-align:center;margin-top:10px;display:block">Try the web app →</a>
+        </form>
+
+        <p style="font-size:13px;color:var(--grey-400);margin-top:20px">No spam. Just a heads-up when we go live.</p>
+
+        <!-- Social links -->
+        <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:36px;padding-top:36px;border-top:1px solid var(--grey-200)">
+          <span style="font-size:14px;color:var(--grey-400)">Follow along:</span>
+          <a href="https://instagram.com/betheresocial.app" target="_blank" class="footer-social-icon" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="white"/></svg>
+          </a>
+          <a href="#" class="footer-social-icon" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="footer-social-icon" aria-label="LinkedIn" style="background:var(--purple)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="white" stroke-width="2"/><rect x="6" y="10" width="2.5" height="8" fill="white"/><circle cx="7.25" cy="7.25" r="1.5" fill="white"/><path d="M11.5 10v8M11.5 13c0-1.7 1.2-3 2.8-3s2.7 1.3 2.7 3v5" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="logo.png" alt="BeThere" class="logo-img" style="height:28px"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+        <span style="display:none" class="logo-text" style="font-size:20px"><span class="logo-be">Be</span>There</span>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="for-business.html">For venues</a>
+        <a href="mailto:Hello@BeThereSocial.com">Hello@BeThereSocial.com</a>
+      </div>
+      <div class="footer-socials">
+        <a href="https://instagram.com/betheresocial.app" target="_blank" class="footer-social-icon" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="white"/></svg>
+        </a>
+        <a href="#" class="footer-social-icon" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" class="footer-social-icon" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="white" stroke-width="2"/><rect x="6" y="10" width="2.5" height="8" fill="white"/><circle cx="7.25" cy="7.25" r="1.5" fill="white"/><path d="M11.5 10v8M11.5 13c0-1.7 1.2-3 2.8-3s2.7 1.3 2.7 3v5" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+      <div class="footer-accolade">Fan Favorite · Hatch 2025 · Built at UWEC · Launching April 2026</div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

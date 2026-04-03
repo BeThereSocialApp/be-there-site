@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BeThere for Venues — Fill your bar on slow nights.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="logo-wrap" href="index.html">
+        <img src="logo.png" alt="BeThere" class="logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+        <span style="display:none" class="logo-text"><span class="logo-be">Be</span>There</span>
+      </a>
+      <div class="nav-links">
+        <a href="#how"      class="nav-link" data-section="how">How It Works</a>
+        <a href="#features" class="nav-link" data-section="features">Features</a>
+        <a href="#roi"      class="nav-link" data-section="roi">ROI</a>
+        <a href="#pricing"  class="nav-link" data-section="pricing">Pricing</a>
+        <a href="#team"     class="nav-link" data-section="team">Team</a>
+      </div>
+      <div class="nav-ctas">
+        <a href="for-users.html" class="btn-ghost" style="font-size:13px">For people →</a>
+        <a href="mailto:Hello@BeThereSocial.com" class="btn-primary">Get a demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- EMAIL BANNER — always visible -->
+  <div class="email-banner" style="margin-top:64px">
+    <div class="email-banner-inner">
+      <h3>Ready to talk? We'll pick up the phone.</h3>
+      <a href="mailto:Hello@BeThereSocial.com" class="btn-email-banner">Hello@BeThereSocial.com</a>
+      <div style="display:flex;gap:10px;align-items:center">
+        <!-- LinkedIn URL placeholder — no public URL yet -->
+        <a href="#" class="footer-social-icon" aria-label="LinkedIn" style="background:rgba(255,255,255,0.15)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="white" stroke-width="2"/><rect x="6" y="10" width="2.5" height="8" fill="white"/><circle cx="7.25" cy="7.25" r="1.5" fill="white"/><path d="M11.5 10v8M11.5 13c0-1.7 1.2-3 2.8-3s2.7 1.3 2.7 3v5" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </a>
+        <a href="https://instagram.com/betheresocial.app" target="_blank" class="footer-social-icon" aria-label="Instagram" style="background:rgba(255,255,255,0.15)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="white"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="section biz-hero" id="home" style="padding-top:72px">
+    <div class="biz-hero-orb biz-hero-orb-1"></div>
+    <div class="biz-hero-orb biz-hero-orb-2"></div>
+    <div class="container biz-hero-inner">
+      <div class="biz-hero-copy">
+        <div class="chip chip-purple reveal">For bar &amp; venue owners</div>
+        <h1 class="reveal reveal-delay-1">Your slow nights<br/>end here.</h1>
+        <p class="biz-hero-sub reveal reveal-delay-2">Post an event. RSVPs cascade through friend networks on their own. You see real headcount 48 hours before doors open — no ad spend, no guessing, no empty bar.</p>
+        <div class="biz-hero-btns reveal reveal-delay-3">
+          <a href="mailto:Hello@BeThereSocial.com" class="btn-primary btn-lg">Get a demo</a>
+          <a href="#how" class="btn-ghost" style="font-size:15px;font-weight:600">See how it works →</a>
+        </div>
+        <!-- Email CTA block -->
+        <div class="biz-hero-email-block reveal reveal-delay-4">
+          <svg class="biz-hero-email-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M2 8l10 6 10-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <div>
+            <div class="beb-label">Email us directly</div>
+            <a href="mailto:Hello@BeThereSocial.com">Hello@BeThereSocial.com</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: dashboard mockup -->
+      <div class="reveal reveal-delay-2" style="display:flex;justify-content:center;align-items:center">
+        <div style="background:#fff;border:1.5px solid var(--grey-200);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-lg);max-width:340px;width:100%">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--grey-400);margin-bottom:4px">Venue Dashboard</div>
+          <div style="font-size:18px;font-weight:800;color:var(--text);margin-bottom:20px">The Pickle Bar</div>
+
+          <!-- Event row -->
+          <div style="background:var(--off-white);border:1.5px solid var(--grey-200);border-radius:12px;padding:16px;margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+              <div>
+                <div style="font-size:14px;font-weight:800;color:var(--text)">Trivia Night 🧠</div>
+                <div style="font-size:12px;color:var(--text-muted)">Thu 7:00 PM · Tonight</div>
+              </div>
+              <span style="background:var(--purple);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:999px;text-transform:uppercase">Live</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:14px">
+              <div style="text-align:center;border-right:1px solid var(--grey-200)">
+                <div style="font-size:1.6rem;font-weight:800;color:var(--purple)">23</div>
+                <div style="font-size:10px;color:var(--grey-400);text-transform:uppercase;letter-spacing:0.05em">RSVPs</div>
+              </div>
+              <div style="text-align:center;border-right:1px solid var(--grey-200)">
+                <div style="font-size:1.6rem;font-weight:800;color:var(--text)">47</div>
+                <div style="font-size:10px;color:var(--grey-400);text-transform:uppercase;letter-spacing:0.05em">Viewing</div>
+              </div>
+              <div style="text-align:center">
+                <div style="font-size:1.6rem;font-weight:800;color:var(--olive-dark)">↑12</div>
+                <div style="font-size:10px;color:var(--grey-400);text-transform:uppercase;letter-spacing:0.05em">Last hr</div>
+              </div>
+            </div>
+            <!-- Bar chart -->
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <div style="display:flex;align-items:center;gap:8px"><span style="font-size:9px;color:var(--grey-400);width:22px">Mon</span><div style="height:9px;width:20%;background:var(--grey-200);border-radius:999px"></div></div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="font-size:9px;color:var(--grey-400);width:22px">Tue</span><div style="height:9px;width:38%;background:var(--grey-200);border-radius:999px"></div></div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="font-size:9px;color:var(--grey-400);width:22px">Wed</span><div style="height:9px;width:55%;background:var(--grey-200);border-radius:999px"></div></div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="font-size:9px;color:var(--grey-400);width:22px">Thu</span><div style="height:9px;width:85%;background:var(--purple);border-radius:999px"></div></div>
+            </div>
+          </div>
+
+          <div style="background:var(--green-tint);border:1.5px solid var(--olive-light);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px">
+            <span style="font-size:1.2rem">💰</span>
+            <span style="font-size:13px;font-weight:700;color:var(--olive-dark)">Projected: <strong>$460</strong> tonight</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF BAR -->
+  <div class="proof-bar">
+    <div class="container proof-bar-inner">
+      <div class="pb-item"><span>📱</span><span>23 screens designed</span></div>
+      <div class="pb-sep">·</div>
+      <div class="pb-item"><span>🎓</span><span>Built at UW–Eau Claire</span></div>
+      <div class="pb-sep">·</div>
+      <div class="pb-item"><span>📊</span><span>85% of surveyed locals said they'd RSVP through the app</span></div>
+      <div class="pb-sep">·</div>
+      <div class="pb-item"><span>📅</span><span>Launching April 2026</span></div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- PROBLEM / SOLUTION -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="section-header">
+        <div class="chip chip-purple reveal">Why BeThere</div>
+        <h2 class="reveal reveal-delay-1">Instagram buries your posts.<br/>BeThere fills your room.</h2>
+      </div>
+      <div class="ps-compare">
+        <div class="ps-col ps-problem reveal">
+          <div class="ps-col-label"><span class="ps-x">✕</span> The old way</div>
+          <div class="ps-col-title">Instagram &amp; word of mouth</div>
+          <ul class="ps-list ps-list-bad">
+            <li>Posts get buried in the algorithm</li>
+            <li>No idea who's actually coming tonight</li>
+            <li>People coordinate too late — or not at all</li>
+            <li>Slow nights arrive with zero warning</li>
+            <li>Ad money out, no guaranteed bodies in</li>
+          </ul>
+        </div>
+        <div class="ps-vs reveal reveal-delay-2">VS</div>
+        <div class="ps-col ps-solution reveal reveal-delay-3">
+          <div class="ps-col-label"><span class="ps-check">✓</span> The BeThere way</div>
+          <div class="ps-col-title">Real-time social coordination — for your venue</div>
+          <ul class="ps-list ps-list-good">
+            <li>One RSVP cascades through entire friend networks</li>
+            <li>Real headcount on your dashboard 48 hrs out</li>
+            <li>Social proof drives more RSVPs — automatically</li>
+            <li>Staff exactly right, every single night</li>
+            <li>Zero ad spend, zero guesswork</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section-header">
+        <div class="chip chip-olive reveal">Simple by design</div>
+        <h2 class="reveal reveal-delay-1">Three steps. Zero tech skills.</h2>
+        <p class="reveal reveal-delay-2">You run a bar, not a tech startup. We handle everything — you just show up.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <div class="step-icon">📝</div>
+          <h3>Post your event</h3>
+          <p>Add a title, time, and special. You're live in under 5 minutes. We handle setup for you.</p>
+        </div>
+        <div class="step-connector reveal reveal-delay-1">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M4 16H28M20 8L28 16L20 24" stroke="var(--grey-400)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-num">02</div>
+          <div class="step-icon">👆</div>
+          <h3>People RSVP</h3>
+          <p>One tap to commit. You see real names on a live dashboard — 48 hours before doors open.</p>
+        </div>
+        <div class="step-connector reveal reveal-delay-3">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M4 16H28M20 8L28 16L20 24" stroke="var(--grey-400)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step reveal reveal-delay-4">
+          <div class="step-num">03</div>
+          <div class="step-icon">📣</div>
+          <h3>Friends see &amp; follow</h3>
+          <p>Every RSVP shows up in that person's friend feed as a personal recommendation — not an ad. Word of mouth, running on autopilot.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="chip chip-purple reveal">What you get</div>
+        <h2 class="reveal reveal-delay-1">Everything you need.<br/>Nothing you don't.</h2>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card reveal">
+          <div class="feat-icon-wrap fc-purple">📅</div>
+          <div class="feat-body">
+            <h3>Event Publishing</h3>
+            <p>Create and manage events in minutes. Trivia, live music, drink specials — any format you run.</p>
+          </div>
+        </div>
+        <div class="feat-card reveal reveal-delay-1">
+          <div class="feat-icon-wrap fc-olive">📊</div>
+          <div class="feat-body">
+            <h3>Live RSVP Dashboard</h3>
+            <p>Real names, real numbers, 48 hours out. Know exactly how many people are walking through your door.</p>
+          </div>
+        </div>
+        <div class="feat-card reveal reveal-delay-2">
+          <div class="feat-icon-wrap fc-purple">🔗</div>
+          <div class="feat-body">
+            <h3>Friend-Graph Amplification</h3>
+            <p>Every RSVP is automatically shared with that person's social network as a personal recommendation — not an ad.</p>
+          </div>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-icon-wrap fc-olive">👁</div>
+          <div class="feat-body">
+            <h3>Real-Time Visibility</h3>
+            <p>See how many people are viewing your event live. Know when your post is building momentum.</p>
+          </div>
+        </div>
+        <div class="feat-card reveal reveal-delay-1">
+          <div class="feat-icon-wrap fc-purple">⚙️</div>
+          <div class="feat-body">
+            <h3>Done-For-You Setup</h3>
+            <p>We build your venue profile, configure your events, and get you live. Zero technical work on your side.</p>
+          </div>
+        </div>
+        <div class="feat-card reveal reveal-delay-2" style="border-color:var(--olive-light);background:var(--green-tint)">
+          <div class="feat-icon-wrap" style="background:var(--olive);color:#fff">📢</div>
+          <div class="feat-body">
+            <h3>Promotional Posts</h3>
+            <p>Market deals, specials, and announcements directly to your regulars and their networks — on the app.</p>
+            <div class="feat-coming">Coming soon</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ROI -->
+  <section class="section roi-section" id="roi">
+    <div class="container">
+      <div class="roi-inner">
+        <div class="roi-copy reveal">
+          <div class="chip chip-olive" style="background:rgba(123,173,71,0.2);color:var(--olive-light)">The math</div>
+          <h2>Modest lift.<br/>Real revenue.</h2>
+          <p>Other apps focus on transactions or planning weeks out. BeThere drives people through your door <em>tonight</em> — and gives you the numbers to back it up.</p>
+          <div class="roi-equation">
+            <div class="roi-eq-item">
+              <span class="roi-eq-num">10</span>
+              <span class="roi-eq-label">extra people<br/>per week</span>
+            </div>
+            <div class="roi-eq-op">×</div>
+            <div class="roi-eq-item">
+              <span class="roi-eq-num">$5</span>
+              <span class="roi-eq-label">avg spend<br/>above baseline</span>
+            </div>
+            <div class="roi-eq-op">=</div>
+            <div class="roi-eq-item roi-eq-result">
+              <span class="roi-eq-num">$200</span>
+              <span class="roi-eq-label">added revenue<br/>per month</span>
+            </div>
+          </div>
+          <div class="roi-callout">That's incremental revenue — from people who wouldn't have walked in without seeing their friends were going.</div>
+          <div class="roi-promo-note">
+            <span style="font-size:1.1rem">📢</span>
+            <span><strong>Coming soon:</strong> Promotional posts — market deals &amp; specials directly to your regulars on the app.</span>
+          </div>
+        </div>
+        <div class="roi-cards reveal reveal-delay-2">
+          <div class="roi-stat-card">
+            <div class="rsc-num">48hr</div>
+            <div class="rsc-label">headcount visibility before doors</div>
+          </div>
+          <div class="roi-stat-card">
+            <div class="rsc-num">$0</div>
+            <div class="rsc-label">ad spend required</div>
+          </div>
+          <div class="roi-stat-card roi-stat-highlight">
+            <div class="rsc-num">$200+</div>
+            <div class="rsc-label">added monthly revenue, conservatively</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PRICING / CONTACT -->
+  <section class="section" id="pricing" style="background:var(--off-white)">
+    <div class="container">
+      <div class="section-header">
+        <div class="chip chip-purple reveal">Get started</div>
+        <h2 class="reveal reveal-delay-1">Let's talk.</h2>
+        <p class="reveal reveal-delay-2">First month free. No long-term commitment. Cancel anytime.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <div class="cc-icon">📅</div>
+          <h3>Book a demo</h3>
+          <p>We'll walk through everything live and build a custom plan for your venue. Takes 20 minutes.</p>
+          <a href="mailto:Hello@BeThereSocial.com?subject=Demo Request" class="btn-primary">Schedule a demo</a>
+        </div>
+        <div class="contact-card cc-featured reveal reveal-delay-2">
+          <div class="cc-icon">✉️</div>
+          <h3>Email us directly</h3>
+          <p>Questions, partnerships, or ready to get started — reach out and we'll respond same day.</p>
+          <a href="mailto:Hello@BeThereSocial.com" class="btn-email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M2 8l10 6 10-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Hello@BeThereSocial.com
+          </a>
+          <div class="cc-social">
+            <!-- LinkedIn URL placeholder — no public URL yet -->
+            <a href="#" class="social-icon social-icon-dark" aria-label="LinkedIn">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"/><rect x="6" y="10" width="2.5" height="8" fill="currentColor"/><circle cx="7.25" cy="7.25" r="1.5" fill="currentColor"/><path d="M11.5 10v8M11.5 13c0-1.7 1.2-3 2.8-3s2.7 1.3 2.7 3v5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </a>
+            <a href="https://instagram.com/betheresocial.app" target="_blank" class="social-icon social-icon-dark" aria-label="Instagram">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="contact-card reveal reveal-delay-3">
+          <div class="cc-icon">🎁</div>
+          <h3>First month free</h3>
+          <p>Every new venue gets their first month at no cost. No card required to start the conversation.</p>
+          <a href="mailto:Hello@BeThereSocial.com?subject=First Month Free" class="btn-outline">Claim offer</a>
+        </div>
+      </div>
+
+      <!-- Founding Partner -->
+      <div class="founding-callout reveal">
+        <div class="founding-badge">10 spots only</div>
+        <div class="founding-body">
+          <div>
+            <h3>Become a Founding Partner</h3>
+            <p>We're onboarding 10 Eau Claire venues at a locked-in founding rate — with hands-on setup, priority support, and direct access to the team. Lock in your rate before we open to the market.</p>
+          </div>
+          <a href="mailto:Hello@BeThereSocial.com?subject=Founding Partner" class="btn-primary btn-lg founding-cta">Apply now →</a>
+        </div>
+        <div class="founding-features">
+          <div class="ff-item"><span class="ff-check">✓</span> Locked founding rate</div>
+          <div class="ff-item"><span class="ff-check">✓</span> Done-for-you setup</div>
+          <div class="ff-item"><span class="ff-check">✓</span> Live RSVP dashboard</div>
+          <div class="ff-item"><span class="ff-check">✓</span> Friend-graph amplification</div>
+          <div class="ff-item"><span class="ff-check">✓</span> Priority support</div>
+          <div class="ff-item"><span class="ff-check">✓</span> Cancel anytime</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- TEAM -->
+  <section class="section" id="team" style="background:#fff">
+    <div class="container">
+      <div class="section-header">
+        <div class="chip chip-olive reveal">Who we are</div>
+        <h2 class="reveal reveal-delay-1">Built by people who go out.</h2>
+        <p class="reveal reveal-delay-2">We know what moves a crowd because we're part of one. Based in Eau Claire, WI.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="team-avatar avatar-purple">EF</div>
+          <div class="team-name">Evan Finley</div>
+          <div class="team-role">Co-Founder &amp; CEO</div>
+        </div>
+        <div class="team-card reveal reveal-delay-1">
+          <div class="team-avatar avatar-dark">LJ</div>
+          <div class="team-name">Liam Jakubowski</div>
+          <div class="team-role">Co-Founder &amp; CTO</div>
+        </div>
+        <div class="team-card reveal reveal-delay-2">
+          <div class="team-avatar avatar-olive">RJ</div>
+          <div class="team-name">Roland Jenkins</div>
+          <div class="team-role">Co-Founder &amp; Design</div>
+        </div>
+        <div class="team-card reveal reveal-delay-3">
+          <div class="team-avatar avatar-purple">AF</div>
+          <div class="team-name">Aaron Fink</div>
+          <div class="team-role">Co-Founder &amp; Marketing</div>
+        </div>
+        <div class="team-card reveal reveal-delay-4">
+          <div class="team-avatar avatar-dark">MF</div>
+          <div class="team-name">Matt Folden</div>
+          <div class="team-role">Co-Founder</div>
+        </div>
+        <div class="team-card reveal reveal-delay-4">
+          <div class="team-avatar avatar-olive">NK</div>
+          <div class="team-name">Noah Kratochvil</div>
+          <div class="team-role">Sales</div>
+        </div>
+      </div>
+      <div class="team-footer reveal">
+        <p>Questions? <a href="mailto:Hello@BeThereSocial.com" class="team-email">Hello@BeThereSocial.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><span style="color:var(--purple-light);font-weight:800">Be</span><span style="color:#fff;font-weight:800">There</span></div>
+        <div class="footer-tagline">The app that gets you off your phone.</div>
+        <div class="footer-social">
+          <a href="https://instagram.com/betheresocial.app" target="_blank" class="footer-social-icon" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          </a>
+          <!-- LinkedIn URL placeholder — no public URL yet -->
+          <a href="#" class="footer-social-icon" aria-label="LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"/><rect x="6" y="10" width="2.5" height="8" fill="currentColor"/><circle cx="7.25" cy="7.25" r="1.5" fill="currentColor"/><path d="M11.5 10v8M11.5 13c0-1.7 1.2-3 2.8-3s2.7 1.3 2.7 3v5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">For Venues</div>
+        <a href="#how">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#roi">ROI</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="#team">Team</a>
+        <a href="for-users.html">For People</a>
+        <a href="https://dashboard.betheresocial.com/privacy" target="_blank">Privacy Policy</a>
+        <a href="https://dashboard.betheresocial.com/terms" target="_blank">Terms of Service</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <a href="mailto:Hello@BeThereSocial.com">Hello@BeThereSocial.com</a>
+        <a href="https://instagram.com/betheresocial.app" target="_blank">@betheresocial.app</a>
+        <div class="footer-location">📍 Eau Claire, WI</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <span>© 2026 BeThere. All rights reserved.</span>
+        <span class="footer-accolade">Fan Favorite · Hatch 2025 · UWEC</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
